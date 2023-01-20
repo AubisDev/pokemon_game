@@ -11,6 +11,6 @@ export const PrivateAuthGuard = () => {
 
 
 export const PublicAuthGuard = () => {
-    const userState = useSelector( (store:AppStore) => store.user);
-    return userState.username ? <Navigate replace to={PublicRoutes.HOME} /> : <Outlet/> ;
+    const { username } = useSelector( (store:AppStore) => store.user);
+    return username ? <Navigate replace to={PublicRoutes.HOME} /> : <Outlet/> ;
 }

@@ -27,13 +27,10 @@ const Navigation = () => {
                     <Route path={PublicRoutes.HOME} element={ <Home/>} />
                     <Route path={PublicRoutes.ABOUT} element={ <About/>} />
                     <Route element={<PublicAuthGuard/>}>
-                        <Route path={`${PrivateRoutes.TEAM_SELECTION}/*`} element={<ChooseTeam/>} />
-                       
+                        <Route path={`${PrivateRoutes.TEAM_SELECTION}`} element={<ChooseTeam/>} />
                     </Route>
-                    
-                    {/* //! Add User has to be logged in to show  with a Guard*/}
                     <Route element={<PrivateAuthGuard/>}>
-                        <Route path={`${PrivateRoutes.BATTLE}/*`} element={<Battle/>} />
+                        <Route path={`${PrivateRoutes.BATTLE}`} element={<Battle/>} />
                     </Route>
                 </RoutesWithNoFound>
             </BrowserRouter>

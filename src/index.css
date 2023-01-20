@@ -22,6 +22,17 @@ body {
   transform: rotate(30deg);
   background: -webkit-linear-gradient(top, transparent, rgba(245,245,245,0.25),transparent);
   position: absolute;
+  animation: shine 5.5s ease-in infinite;
+  -webkit-animation: shine 5.5s ease-in infinite;
+}
+
+.shine2{
+  width: 1000px;
+  height: 150px;
+  margin-left: -100px;
+  transform: rotate(-45deg);
+  background: -webkit-linear-gradient(top, transparent, rgba(245,245,245,0.25),transparent);
+  position: absolute;
   animation: shine 6s ease-in infinite;
   -webkit-animation: shine 6s ease-in infinite;
 }

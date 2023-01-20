@@ -1,39 +1,41 @@
 import { styled } from '@mui/system';
 import home_bg from '../assets/home-bg-2.webp';
 import { Typography } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
 
-export const Container = styled('div')({
+export const Container = styled('div')(({ theme }) =>({
     width: '100vw',
     height: '100vh',
     backgroundImage: `url(${home_bg})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    position: 'relative'
-})
+    position: 'relative',
 
-export const Overlay = styled('div')({
+    [theme.breakpoints.down("md")]:{
+        height:"auto"
+    }
+}))
+
+export const Overlay = styled('div')(({ theme }) => ({
     width: '100vw',
     height: '100vh',
     background: 'rgba(0,0,0,.10)',
     position: 'relative',
+    flexDirection:'row',
     display:"flex",
     justifyContent:"center",
-    alignItems:"center"
-})
+    alignItems:"center",
 
-export const MainContainer = styled('div')({
-    // width: '350px',
-    // height: '500px',
-    // border:'1px solid rgba(150,150,150,0.4)',
-    // background:'linear-gradient(-45deg, rgba(250,128,128,1) 0%, rgba(133,71,180,1) 25%, rgba(0,252,138,1) 100%)',
-    // overflow: 'hidden',
-    // position: 'relative',
-    // borderRadius: '5px',
-    // textAlign: 'center',
-    // boxShadow: 'inset 5px 5px 20px rgba(255,255,255,0.1)',
-    // webkitAnimation: 'shimmy 6s ease-in-out infinite'
-    width:"25%",
-    height:"80%",
+    [theme.breakpoints.down("md")]:{
+        flexDirection: 'column',
+        height:"auto",
+    }
+
+}))
+
+export const MainContainer = styled('div')(({ theme }) =>({
+    width:"375px",
+    height:"600px",
     display:'flex',
     margin:"auto",
     flexDirection:'column',
@@ -47,8 +49,13 @@ export const MainContainer = styled('div')({
     overflow: 'hidden',
     position: 'relative',
     //boxShadow: 'inset 5px 5px 20px rgba(255,255,255,0.1)',
-    webkitAnimation: 'shimmy 6s ease-in-out infinite'
-})
+    webkitAnimation: 'shimmy 6s ease-in-out infinite',
+
+    [theme.breakpoints.down("md")]:{
+        margin:'1.5em 0',
+        width:"400px"
+    }
+}))
 
 export const FormContainer = styled('div')({
     
@@ -79,6 +86,15 @@ export const TitleText = styled(Typography)({
     paddingRight:"0.25em",
 })
 
+export const QuestionSection = styled("ul")({
+    display: 'flex',
+    flexDirection:"column",
+    justifyContent:"space-evenly",
+    height: '275px',
+    width: "400px",
+    borderRadius: '10px'
+})
+
 export const Question = styled('li')({
     wordBreak: 'break-word',
     fontSize: '20px',
@@ -97,13 +113,4 @@ export const Answer = styled('span')({
     paddingTop: '6px',
     marginLeft:"10px",
     fontFamily: 'Yrsa',
-})
-
-export const QuestionSection = styled("ul")({
-    display: 'flex',
-    flexDirection:"column",
-    justifyContent:"space-evenly",
-    height: '100%',
-    width: "100%",
-    borderRadius: '10px'
 })
