@@ -22,6 +22,16 @@ export const Overlay = styled('div')({
 })
 
 export const MainContainer = styled('div')({
+    // width: '350px',
+    // height: '500px',
+    // border:'1px solid rgba(150,150,150,0.4)',
+    // background:'linear-gradient(-45deg, rgba(250,128,128,1) 0%, rgba(133,71,180,1) 25%, rgba(0,252,138,1) 100%)',
+    // overflow: 'hidden',
+    // position: 'relative',
+    // borderRadius: '5px',
+    // textAlign: 'center',
+    // boxShadow: 'inset 5px 5px 20px rgba(255,255,255,0.1)',
+    // webkitAnimation: 'shimmy 6s ease-in-out infinite'
     width:"25%",
     height:"80%",
     display:'flex',
@@ -33,7 +43,11 @@ export const MainContainer = styled('div')({
     borderRadius:"20px",
     border:"1px solid white",
     boxShadow:"2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-    fontFamily: "'Yrsa', serif"
+    fontFamily: "'Yrsa', serif",
+    overflow: 'hidden',
+    position: 'relative',
+    //boxShadow: 'inset 5px 5px 20px rgba(255,255,255,0.1)',
+    webkitAnimation: 'shimmy 6s ease-in-out infinite'
 })
 
 export const FormContainer = styled('div')({

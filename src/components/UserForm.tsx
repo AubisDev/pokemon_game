@@ -11,7 +11,6 @@ const UserForm = () => {
           label="Username"
           defaultValue="Pokemon Master"
           name='username'
-          
         />
         <CommonButton > Let's choose my team </CommonButton>
     </form>

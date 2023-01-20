@@ -13,4 +13,5 @@ interface Stats {
     health: number;
     defense: number;
     type: string |string[];
+    status: 'alive' | 'dead';
 }

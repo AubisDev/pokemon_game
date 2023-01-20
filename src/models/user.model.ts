@@ -1,5 +1,6 @@
 
 export interface User{
-    name: string;
-    gender: 'Male' | 'Female';
+    username: string;
+  //  gender: 'Male' | 'Female';
+  //  sprite: string;
 }
