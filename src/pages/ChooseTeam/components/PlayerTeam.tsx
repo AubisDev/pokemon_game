@@ -14,7 +14,7 @@ const PlayerTeam = () => {
         <TeamCardsTitle >{`${username}'s`} <Box component='div' color='white' pl={1}>Team</Box></TeamCardsTitle>
         <Grid container  gridTemplateColumns='repeat(2, minmax(0, 1fr))' p={2} width="100%" height="90%" alignItems='center' justifyContent='center' margin='auto' >
         {
-            userTeam.map( pokemon => <PokemonGridCard />)
+            userTeam.map( pokemon => <PokemonGridCard {...pokemon}/>)
         }
         </Grid>
     </TeamCardsContainer>

@@ -1,8 +1,10 @@
 import { Box, Grid, Typography } from "@mui/material"
 import pokeball  from '../../../assets/pokeball.webp';
 import { Circle, GridItem } from "../style-components/main";
+import { Pokemon } from '../../../models/pokemon.model';
 
-const PokemonGridCard = () => {
+
+const PokemonGridCard = (pokemon: Pokemon) => {
   return (
     <Grid item xs={6}  height="30%"  borderRadius='10px'>
       <GridItem>

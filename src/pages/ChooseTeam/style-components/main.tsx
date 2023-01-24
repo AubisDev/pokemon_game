@@ -18,7 +18,7 @@ export const TeamSelectionContainer = styled('div')(({ theme }) =>({
 
 
 export const TeamCardsContainer  = styled('div')(({ theme }) =>({
-    width: 600,
+    width: '40%',
     height: '60%',
     background: 'rgba(0,0,0,0.85)',
     borderRadius: 30,
@@ -63,4 +63,16 @@ export const Circle = styled('div')(({ theme }) => ({
     zIndex: -1,
     left: '-70%',
     borderRadius:"50%"
+}))
+
+// Search Bar 
+
+export const SearchBarContainer = styled('div')(({ theme }) => ({ 
+    width:250,
+    padding: '2em',
+    margin: '0 1em',
+    background: 'rgba(255,255,255,0.85)',
+    color: "black",
+    borderRadius: 5,
+
 }))
