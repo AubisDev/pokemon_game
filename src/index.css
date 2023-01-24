@@ -92,21 +92,21 @@ body {
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  color: black !important;
+  color: white !important;
   background: "rgba(255,255,255,.6)" !important;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input-focused {
-  border-color: black !important;
+  border-color: white !important;
 }
 .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
-  color:black !important;
+  color:white !important;
 }
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-  color: black !important;
+  color: white !important;
 }
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color:  black !important;
+  border-color:  white !important;
   border-width: 2px;
 }

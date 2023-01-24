@@ -8,10 +8,10 @@ export interface Pokemon extends Stats{
 }
 
 interface Stats {
-    ttack?: string;
+    attack?: string;
     speed?: number;
     health?: number;
     defense?: number;
-    type?: string |string[];
+    type?: string[];
     status?: 'alive' | 'dead';
 }

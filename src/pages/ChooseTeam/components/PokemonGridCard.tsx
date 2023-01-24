@@ -6,11 +6,11 @@ import { Pokemon } from '../../../models/pokemon.model';
 
 const PokemonGridCard = (pokemon: Pokemon) => {
   return (
-    <Grid item xs={6}  height="30%"  borderRadius='10px'>
+    <Grid item xs={12}  height="90px"  borderRadius='10px'>
       <GridItem>
-        <Typography width='30%' color='white' my={1} fontWeight={700} fontSize={14} letterSpacing={1}>?</Typography>
+        <Typography width='30%' color='white' py={1} fontWeight={700} fontSize={14} letterSpacing={1}>?</Typography>
         <Box display='flex' flexDirection='column' width='70%' alignItems='center'>
-          <Typography color='white' my={1} fontWeight={700} fontSize={14} letterSpacing={1}>EMPTY SPOT</Typography>
+          <Typography color='white' py={1} fontWeight={700} fontSize={14} letterSpacing={1}>EMPTY SPOT</Typography>
           <img src={pokeball} alt="pokeball" style={{ width:"20px"}}/>
         </Box>
         <Circle/>
