@@ -12,14 +12,14 @@ const UserForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorSB, throwErrorSnackbar  } = useSnackbar();
+  const { errorSB, throwErrorSnackbar } = useSnackbar();
   const [userName, setUserName] = useState<string>('Pokemon Master');
 
   const handleSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if( userName.length >= 2){
-       dispatch(setUsername(userName));
-       navigate(`/${PrivateRoutes.TEAM_SELECTION}`);
+       dispatch(setUsername({ username: userName}));
+       navigate(`/${PrivateRoutes.TEAM_SELECTION}`, {replace:true});
     }
     else{
       throwErrorSnackbar();

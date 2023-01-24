@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import About from "../pages/About/About"
 import Home from "../pages/Home/Home"
 import { BrowserRouter, Route, Navigate } from 'react-router-dom';
-import { PublicAuthGuard, PrivateAuthGuard } from "../guards/AuthGuard.guard";
+import { PrivateAuthGuard, TeamSelectGuard } from '../guards/AuthGuard.guard';
 import { PublicRoutes, PrivateRoutes } from "../models/routes";
 import ChooseTeam from "../pages/ChooseTeam/ChooseTeam";
 import RoutesWithNoFound from "../utilities/RoutesWithNoFound";
@@ -26,7 +26,7 @@ const Navigation = () => {
                     <Route path={'/'} element={ <Navigate to={PublicRoutes.HOME} />} />
                     <Route path={PublicRoutes.HOME} element={ <Home/>} />
                     <Route path={PublicRoutes.ABOUT} element={ <About/>} />
-                    <Route element={<PublicAuthGuard/>}>
+                    <Route element={<TeamSelectGuard/>}>
                         <Route path={`${PrivateRoutes.TEAM_SELECTION}`} element={<ChooseTeam/>} />
                     </Route>
                     <Route element={<PrivateAuthGuard/>}>

@@ -1,6 +1,17 @@
+import { Overlay } from '../../style-components/home.styles-components';
+import PlayerTeam from './components/PlayerTeam';
+import { TeamSelectionContainer } from './style-components/main';
+
+
 const ChooseTeam = () => {
   return (
-    <div>ChooseTeam</div>
+    <TeamSelectionContainer>
+      <Overlay>
+        {/* <PokemonPreSelection/>
+        <PokemonSearchBar/> */}
+        <PlayerTeam/>
+      </Overlay>
+    </TeamSelectionContainer>
   )
 }
 export default ChooseTeam
