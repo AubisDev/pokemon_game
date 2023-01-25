@@ -175,17 +175,12 @@ export const PokemonName =  styled('div')(({ theme }) => ({
 
 export const Pulse =  styled('div')(({ theme }) => ({ 
     borderRadius: '50%',
-    width: '150px',
-    height: '150px',
-    position: 'absolute',
+    width: '200px',
+    height: '200px',
     opacity: 0,
     animation: 'scaleIn 6s infinite cubic-bezier(.36, .11, .89, .32)',
-    bottom:'50%',
-    top:'50%',
-    right:'50%',
-    left:'50%',
-    marginLeft:"-6em",
     zIndex:-1,
+    marginLeft:"-3em",
 
     "@keyframes scaleIn":{
         'from': {

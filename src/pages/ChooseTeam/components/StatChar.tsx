@@ -8,14 +8,14 @@ interface IStatProps {
 }
 
 const StatChar = ({statName, stat, color}:IStatProps) => {
-    const Rest = Math.floor((150-stat)/10);
-    const StatsPercentagePoints = 15 - Rest;
+    const Rest = Math.floor((200-stat)/10);
+    const StatsPercentagePoints = 20 - Rest;
     const dataArray = new Array(StatsPercentagePoints).fill(true).concat( new Array(Rest).fill(false));
-    //console.log(color);
+    
   return (
     <Box display='flex' flexDirection='row' alignItems="center" pb={4} >
         <Typography fontSize={18} fontWeight={600}>{statName}:  </Typography>
-        {
+        { dataArray && 
             dataArray?.map( data => 
                 data ?  <span key={uuidv4()} style={{width:"12px", height:"8px", background:color.toString(), marginLeft:"4px"}}></span>
                      :  <span key={uuidv4()} style={{width:"12px", height:"8px", background:"white", marginLeft:"4px"}}></span>
