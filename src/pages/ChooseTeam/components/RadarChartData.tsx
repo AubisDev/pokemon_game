@@ -3,9 +3,10 @@ import { ChartData } from "../adapters/ChartData.adapter"
 
 interface IRadarChartDataProps{
     data: ChartData[];
+    color: string;
 }
 
-const RadarChartData = ({data}:IRadarChartDataProps) => {
+const RadarChartData = ({data,color}:IRadarChartDataProps) => {
 
   return (
     <RadarChart
@@ -13,7 +14,7 @@ const RadarChartData = ({data}:IRadarChartDataProps) => {
         height={450}
         width={550}
         data={data}
-        style={{ transform: 'scale(0.70)', fontSize:"22px"}}
+        style={{ transform: 'scale(0.70)', fontSize:"22px", marginTop: '-3em'}}
     >
         <PolarGrid />
         <PolarAngleAxis dataKey="statName"  />
@@ -21,8 +22,8 @@ const RadarChartData = ({data}:IRadarChartDataProps) => {
         <Radar
             name="Chart"
             dataKey="statValue"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke={color}
+            fill={color}
             fillOpacity={0.6}
         />
   </RadarChart>

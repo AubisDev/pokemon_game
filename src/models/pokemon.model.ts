@@ -12,6 +12,7 @@ export interface Stats {
     speed?: number;
     health?: number;
     defense?: number;
-    type?: string[];
+    types?: string[];
     status?: 'alive' | 'dead';
 }
+

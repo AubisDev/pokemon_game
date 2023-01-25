@@ -176,8 +176,8 @@ export const Pulse =  styled('div')(({ theme }) => ({
     position: 'absolute',
     opacity: 0,
     animation: 'scaleIn 6s infinite cubic-bezier(.36, .11, .89, .32)',
-    bottom:'50%',
-    marginLeft:"-2em",
+    bottom:'55%',
+    marginLeft:"-6em",
 
     "@keyframes scaleIn":{
         'from': {

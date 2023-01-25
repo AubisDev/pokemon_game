@@ -10,7 +10,7 @@ export const PokemonDataAdapter = ( pokemon: any ):Pokemon => {
         attack: pokemon.stats[1].base_stat,  
         defense: pokemon.stats[2].base_stat,  
         speed: pokemon.stats[5].base_stat,
-        type: pokemon.types.map( (elem:any) => elem.type),
+        types: pokemon.types.map( (pokeType:any) => pokeType.type.name ),
         status: 'alive',
     }
 }
