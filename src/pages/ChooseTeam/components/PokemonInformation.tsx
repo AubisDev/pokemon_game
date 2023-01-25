@@ -1,15 +1,14 @@
-import { Typography, Box, Stack } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { AppStore } from '../../../redux/store';
 import { ColorType, colorTypesList } from '../../../utilities/colorsTypesList';
-import { CircleSmall, PokemonData, PokemonName, PokemonSection, Pulse } from '../style-components/main';
+import { PokemonData, PokemonName, PokemonSection, Pulse } from '../style-components/main';
 import PokemonSearchBar from './PokemonSearchBar';
-import statsbg from '../../../assets/prueba.png';
-import { BarChart } from 'recharts';
 import StatChar from './StatChar';
 import RadarChartData from './RadarChartData';
 import { CharDataAdapter } from '../adapters/ChartData.adapter';
 import { charDataEmptyValues } from '../utilities/constant';
+import PulseEffect from './PulseEffect';
 
 const PokemonInformation = () => {
     const { name, id, imageFront, health, attack, defense, speed, types, status } = useSelector( (store: AppStore) => store.search);
@@ -17,7 +16,7 @@ const PokemonInformation = () => {
     const ChartData = attack ? CharDataAdapter({attack, defense, health,speed}) : charDataEmptyValues() ;
     console.log(types);
   return (
-    <Box height='100vh' width='75vw'  overflow='hidden' sx={{ background:'rgba(0,0,0,0.90)'}}>
+    <Box height='100vh' width='75vw'  overflow='hidden' sx={{ background:'rgba(0,0,0,0.90)', position:"relative"}}>
       <PokemonSearchBar/>
           {
             attack ? (
@@ -39,32 +38,24 @@ const PokemonInformation = () => {
                       }
                       <RadarChartData data={ChartData} color={typeInformation.bgColor}/>
                   </PokemonData>
+
+
+
                   <Box display='flex' flexDirection='column' alignItems='center' width='50%' height="100%" position='relative'  m='auto' mt={5}  >
                     <PokemonName style={{ backgroundImage:typeInformation.bgGradient }}>{name}</PokemonName>
-                    <img src={imageFront} alt={name} style={{ zIndex:100, display:"flex", margin:"0 auto", width:"350px", height:"350px",  WebkitBoxReflect:"below 0 linear-gradient(transparent, transparent, #005)"}} />
-                    <Pulse style={{ animationDelay: '0s', backgroundImage: typeInformation.bgGradient }}/>
-                    <Pulse style={{ animationDelay: '1s', backgroundImage: typeInformation.bgGradient  }}/>
-                    <Pulse style={{ animationDelay: '2s', backgroundImage: typeInformation.bgGradient  }}/>
-                    <Pulse style={{ animationDelay: '3s', backgroundImage: typeInformation.bgGradient  }}/>
+                    <Box width={300} height={300} zIndex={100} position='relative'>
+                      <img src={imageFront} alt={name} style={{ display:"flex", margin:"0 auto", width:"100%", height:"100%", objectPosition:"ce",  WebkitBoxReflect:"below 0 linear-gradient(transparent, transparent, #005)"}} />
+                      <PulseEffect color={typeInformation.bgGradient}/>
+                    </Box>
                   </Box>
               </PokemonSection>
+
             </Box>
             )
             : null
           }
-     
+         <Button fullWidth={false} variant="contained" sx={{ width:'200px', marginX:"auto" ,position:"absolute", bottom:15, left:0, right:0}} >Add to my team</Button>
     </Box>
   )
 }
 export default PokemonInformation
-
-         {/* <Typography fontSize="24px" fontFamily='Yrsa' >Name: {name}</Typography>
-          <Typography fontSize="24px" fontFamily='Yrsa' >Healt: {health}</Typography>
-          <Typography fontSize="24px" fontFamily='Yrsa' >Attack: {attack}</Typography>
-          <Typography fontSize="24px" fontFamily='Yrsa' >Defense: {defense}</Typography>
-          <Typography fontSize="24px" fontFamily='Yrsa' >Speed: {speed}</Typography>
-          <Stack>
-            {
-              type?.map( pokeElem => <Typography fontSize="24px" fontFamily='Yrsa' >Type: {pokeElem.name}</Typography>)
-            }
-          </Stack> */}
