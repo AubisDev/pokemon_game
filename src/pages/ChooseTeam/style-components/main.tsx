@@ -19,10 +19,13 @@ export const TeamSelectionContainer = styled('div')(({ theme }) =>({
 
 export const TeamCardsContainer  = styled('div')(({ theme }) =>({
     width: '25%',
-    height: 'auto',
-    background: 'rgba(0,0,0,0.85)',
-    borderRadius: 30,
-    border: '2px solid blue'
+    height: '100%',
+    background: 'rgba(0,0,0,0.9)',
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"center"
+    // borderRadius: 30,
+    // border: '2px solid blue'
 }))
 
 
@@ -156,6 +159,7 @@ export const PokemonName =  styled('div')(({ theme }) => ({
     animation: 'textclip 4s linear infinite',
     display: 'inline-block',
     fontSize: '48px',
+    fontWeight: 600,
     textTransform: 'capitalize',
     alignText:"center",
 
@@ -176,16 +180,20 @@ export const Pulse =  styled('div')(({ theme }) => ({
     position: 'absolute',
     opacity: 0,
     animation: 'scaleIn 6s infinite cubic-bezier(.36, .11, .89, .32)',
-    bottom:'55%',
+    bottom:'50%',
+    top:'50%',
+    right:'50%',
+    left:'50%',
     marginLeft:"-6em",
+    zIndex:-1,
 
     "@keyframes scaleIn":{
         'from': {
             transform: 'scale(.75, .75)',
-            opacity: .5,
+            opacity: .15,
         },
         'to': {
-            transform: 'scale(3, 3)',
+            transform: 'scale(2.5, 2.5)',
             opacity: 0,
         }
     }

@@ -11,7 +11,7 @@ import darkSymbol from '../assets/PokemonTypeIcons/dark-type.webp';
 import bugSymbol from '../assets/PokemonTypeIcons/bug-type.webp';
 import fairySymbol from '../assets/PokemonTypeIcons/fairy-type.webp';
 import flyingSymbol from '../assets/PokemonTypeIcons/flying-type.webp';
-import phychicSymbol from '../assets/PokemonTypeIcons/phychic-type.webp';
+import psychicSymbol from '../assets/PokemonTypeIcons/psychic-type.webp'
 import poisonSymbol from '../assets/PokemonTypeIcons/poison-type.webp';
 import steelSymbol from '../assets/PokemonTypeIcons/steel-type.webp';
 import iceSymbol from '../assets/PokemonTypeIcons/ice-type.webp';
@@ -120,13 +120,13 @@ export const colorTypesList = (type: string):ColorType => {
                 symbol: fightingSymbol
             }
 
-        case 'phychic': 
+        case 'psychic': 
             return { 
                 bgColor: 'rgb(138,5,50)', 
                 bgGradient:'linear-gradient(125deg, rgba(138,5,50,1) 0%, rgba(236,14,99,1) 33%, rgba(245,87,146,1) 66%, rgba(239,254,231,1) 100%)',
                 weak: ['Bug', 'Ghost', 'Dark'],
                 resistent: ['Fighting', 'Psychic'],
-                symbol: phychicSymbol
+                symbol: psychicSymbol
             }
         
         case 'rock':
