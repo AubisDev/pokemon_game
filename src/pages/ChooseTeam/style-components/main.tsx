@@ -95,7 +95,8 @@ export const PokemonData =  styled('div')(({ theme }) => ({
     display:"flex",
     flexDirection:"column",
     color:"white",
-    alignItems:"center"
+    alignItems:"center",
+    margin:'0 auto'
 }))
 
 
@@ -152,11 +153,12 @@ export const PokemonName =  styled('div')(({ theme }) => ({
     textFillColor: 'transparent',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    animation: 'textclip 8s linear infinite',
+    animation: 'textclip 4s linear infinite',
     display: 'inline-block',
     fontSize: '48px',
     textTransform: 'capitalize',
     alignText:"center",
+
 
     "@keyframes textclip":{
         "to":{
@@ -165,3 +167,26 @@ export const PokemonName =  styled('div')(({ theme }) => ({
     }
 }))
 
+
+
+export const Pulse =  styled('div')(({ theme }) => ({ 
+    borderRadius: '50%',
+    width: '150px',
+    height: '150px',
+    position: 'absolute',
+    opacity: 0,
+    animation: 'scaleIn 6s infinite cubic-bezier(.36, .11, .89, .32)',
+    bottom:'50%',
+    marginLeft:"-2em",
+
+    "@keyframes scaleIn":{
+        'from': {
+            transform: 'scale(.75, .75)',
+            opacity: .5,
+        },
+        'to': {
+            transform: 'scale(3, 3)',
+            opacity: 0,
+        }
+    }
+}))
