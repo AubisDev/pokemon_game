@@ -20,12 +20,11 @@ export const TeamSelectionContainer = styled('div')(({ theme }) =>({
 export const TeamCardsContainer  = styled('div')(({ theme }) =>({
     width: '25%',
     height: '100%',
-    background: 'rgba(0,0,0,0.9)',
     display:"flex",
     flexDirection:"column",
-    alignItems:"center"
-    // borderRadius: 30,
-    // border: '2px solid blue'
+    alignItems:"center",
+    borderLeft:'1px solid rgba(113,115,115,0.25)',
+    position:"relative"
 }))
 
 
@@ -37,11 +36,21 @@ export const TeamCardsTitle = styled('div')(({ theme }) =>({
     textAlign: 'center',
     display:"flex",
     flexDirection: 'row',
-    justifyContent:"center",
-    alignItems:"center",
-
+    position:"absolute",
+    top:"5%"
 }))
 
+{/* <Box width="30%" height='100px' display='flex' alignItems='center' justifyContent='center'> */}
+
+export const BouncingContainer = styled('div')(({ theme }) => ({ 
+    width: '30%',
+    height:"100px",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    animation: 'bouncer 0.25 linear infinite' ,
+    transformOrigin:"bottom",
+}))
 
 export const GridItem = styled('div')(({ theme }) => ({
     textAlign:'center',
@@ -53,7 +62,7 @@ export const GridItem = styled('div')(({ theme }) => ({
     justifyContent:'space-evenly',
     background:"rgba(8,81,122,.85)",
     clipPath: "polygon( 0 20%, 10% 0, 90% 0, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0% 80%, 0% 10%)",
-    border:"2px solid blue",
+    border:"2px solid orange",
     position:"relative"
     
 }))
@@ -65,7 +74,8 @@ export const Circle = styled('div')(({ theme }) => ({
     position: 'absolute',
     zIndex: -1,
     left: '-70%',
-    borderRadius:"50%"
+    borderRadius:"50%",
+    border:"2px solid orange"
 }))
 
 // Search Bar 

@@ -6,6 +6,7 @@ export const PokemonDataAdapter = ( pokemon: any ):Pokemon => {
         name: pokemon.name,
         id: pokemon.id,
         imageFront: pokemon.sprites.other.home.front_default,
+        imageSpot: pokemon.sprites.front_default,
         health: pokemon.stats[0].base_stat,
         attack: pokemon.stats[1].base_stat,  
         defense: pokemon.stats[2].base_stat,  

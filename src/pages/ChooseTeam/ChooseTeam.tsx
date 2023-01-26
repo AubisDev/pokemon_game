@@ -9,7 +9,6 @@ const ChooseTeam = () => {
     <TeamSelectionContainer>
       <Overlay>
         <PokemonInformation/> 
-        <PlayerTeam/>
       </Overlay>
     </TeamSelectionContainer>
   )
