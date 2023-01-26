@@ -84,7 +84,7 @@ export const SearchBarContainer = styled('div')(({ theme }) => ({
 
 
 
-export const PokemonSection =  styled('div')(({ theme }) => ({ 
+export const InformationContainer =  styled('div')(({ theme }) => ({ 
     height: '85.5vh',
     width: '100%',
     display:"flex",

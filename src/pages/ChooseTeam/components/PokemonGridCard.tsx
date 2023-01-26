@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material"
 import pokeball  from '../../../assets/pokeball.webp';
-import { Circle, GridItem } from "../style-components/main";
-import { Pokemon } from '../../../models/pokemon.model';
+import { Circle, GridItem } from "../style-components";
+import { Pokemon } from '../../../models/';
 
 
 const PokemonGridCard = (pokemon: Pokemon) => {

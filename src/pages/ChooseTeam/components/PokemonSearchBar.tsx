@@ -1,11 +1,10 @@
-import { Typography, TextField, Snackbar, Alert, Button } from "@mui/material"
+import { Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { CommonButton } from "../../../style-components/home.styles-components"
-import { SearchBarContainer } from "../style-components/main"
-import { fetchPokemonData } from '../utilities/FindPokemon';
-import { PokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
+import { SearchBarContainer } from "../style-components/"
+import { fetchPokemonData } from '../utilities/';
+import { PokemonDataAdapter } from '../../../adapters/';
 import { setPokemonData } from "../../../redux/state/pokemon";
 
 

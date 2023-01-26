@@ -2,7 +2,7 @@
 import { Box, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { AppStore } from '../../../redux/store';
-import { TeamCardsContainer, TeamCardsTitle } from "../style-components/main";
+import { TeamCardsContainer, TeamCardsTitle } from "../style-components";
 import PokemonGridCard from "./PokemonGridCard";
 import { v4 as uuidv4 } from 'uuid';
 

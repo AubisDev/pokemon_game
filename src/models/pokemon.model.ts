@@ -8,7 +8,7 @@ export interface Pokemon extends Stats{
 }
 
 export interface Stats {
-    attack?: string;
+    attack?: number;
     speed?: number;
     health?: number;
     defense?: number;

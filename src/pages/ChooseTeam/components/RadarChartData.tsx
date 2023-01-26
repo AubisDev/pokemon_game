@@ -1,5 +1,5 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from "recharts"
-import { ChartData } from "../adapters/ChartData.adapter"
+import { ChartData } from "../adapters"
 
 interface IRadarChartDataProps{
     data: ChartData[];
