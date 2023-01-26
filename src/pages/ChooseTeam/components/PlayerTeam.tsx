@@ -13,7 +13,6 @@ const PlayerTeam = () => {
     const { username } = useSelector( (store:AppStore) => store.user );
     const { userTeam } = useSelector( (store:AppStore) => store.teams );
 
-
   return (
     <TeamCardsContainer >
       <TeamCardsTitle >{`${username}'s`} <Box component='div' color='white' pl={1} >Team</Box></TeamCardsTitle>
