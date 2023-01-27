@@ -8,13 +8,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import { removePokemon } from "../../../redux/state/teams";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStore } from '../../../redux/store';
+import { useLocation } from "react-router";
 
 const PokemonGridCard = (pokemon: Pokemon) => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { name, id, attack, defense, speed, health, types, imageSpot } = pokemon;
-
   const handleRemove = () =>  dispatch(removePokemon(id));
   
+  const isInBattleMode = location.pathname.includes("/battle");
+
   return (
     <Grid item xs={12}  height="90px"  borderRadius='10px'>
       {
@@ -35,7 +38,7 @@ const PokemonGridCard = (pokemon: Pokemon) => {
               <img src={imageSpot} alt="pokeball" style={{ width:"80px", height:'80px'}}/>
             </BouncingContainer>
             <Box display='flex' flexDirection='column' width='70%' height='100%' alignItems='start' ml={5} color="white">
-              <Stack direction='row' alignItems='center' justifyContent='space-between' width='100%'>
+              <Stack direction='row' alignItems='center' justifyContent='space-evenly' width='100%'>
                 <Typography color='white' pt={1} fontWeight={700} fontSize={16} letterSpacing={2} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
                 <Stack direction='row'  pt={1}>
                   {
@@ -46,9 +49,13 @@ const PokemonGridCard = (pokemon: Pokemon) => {
                     ))
                   }
                 </Stack>
-                <Button onClick={handleRemove} sx={{mb:"-8px", zIndex:200}}>
-                  <CloseIcon sx={{background:"red", borderRadius:"50%", color:"white", fontSize:"18px"}}/>
-                </Button>
+                { !isInBattleMode ? 
+                  (
+                    <Button onClick={handleRemove} sx={{mb:"-8px", zIndex:200}}>
+                      <CloseIcon sx={{background:"red", borderRadius:"50%", color:"white", fontSize:"18px"}}/>
+                    </Button>
+                  ) : null
+                }
               </Stack>
               <Stack direction='row' width="100%" alignItems='center' spacing={1} position='relative' >
                 <Typography  fontSize='17px'>HP </Typography>
