@@ -17,7 +17,7 @@ const teamsInitialState:Teams = {
     enemyTeam: []
 }
 
-const emptySpotState = {name:'', id: '0'};
+export const emptySpotState = {name:'', id: '0'};
 
 export const teamsSlice:Slice = createSlice({
     name: 'teams',
@@ -34,13 +34,17 @@ export const teamsSlice:Slice = createSlice({
         },
 
         removePokemon: (state, action) => {
-            const {index } = action.payload;
+            const id = action.payload;
             let stateCopy:Pokemon[] = [...state.userTeam];
-            stateCopy[index] = emptySpotState;
-            return {
-                ...state,
-                userTeam: stateCopy
+            let index = stateCopy.findIndex( pokemon => pokemon.id === id);
+            if( index !== -1){
+                stateCopy[index] = emptySpotState;
+                return {
+                    ...state,
+                    userTeam: stateCopy
+                }
             }
+            return state
         },
     }
 })
