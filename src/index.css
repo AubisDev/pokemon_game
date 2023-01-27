@@ -123,3 +123,12 @@ body {
 
 
 
+.fightBtn:hover{
+  background: #690d15 !important;
+  transition-duration: all 0.3s !important;
+}
+
+.changeBtn:hover{
+  background: #a15205 !important;  
+  transition-duration: all 0.3s !important;
+}
