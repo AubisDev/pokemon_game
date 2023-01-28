@@ -15,20 +15,28 @@ export const BattleSectionContainer = styled("div")(({theme}) => ({
     height:"80%",
     width:"100%",
     backgroundImage: `url(${battleBg})`,
+    backgroundSize:"cover",
+    
     
 }))
 
 export const ActionsSection = styled("div")(({theme}) => ({ 
     height:"20%",
     width:"100%",
-    border:"10px solid orange",
-    borderStyle:"double",
+    position:"relative",
+    border:'1px solid darkorange',
+    background:"rgba(0,0,0,.6)"
+}))
+
+export const InnerContainerBorder = styled("div")(({theme}) => ({  
+    width:"98%",
+    height:"90%",
+    border:"4px solid darkorange",
     background:"linear-gradient( #21314b, #21314b,#21314b ) padding-box, blue",
     display:"flex",
     flexDirection:"row",
     alignItems:"center",
-    justifyContent:"space-evenly"
-
+    justifyContent:"space-evenly",
 }))
 
 export const PixelatedButton = styled("button")(({theme}) => ({ 
