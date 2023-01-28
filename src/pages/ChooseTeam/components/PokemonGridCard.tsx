@@ -6,8 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { colorTypesList } from "../../../utilities";
 import CloseIcon from '@mui/icons-material/Close';
 import { removePokemon } from "../../../redux/state/teams";
-import { useDispatch, useSelector } from 'react-redux';
-import { AppStore } from '../../../redux/store';
+import { useDispatch } from 'react-redux';
 import { useLocation } from "react-router";
 
 const PokemonGridCard = (pokemon: Pokemon) => {

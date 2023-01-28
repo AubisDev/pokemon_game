@@ -1,6 +1,7 @@
 import { styled } from '@mui/system';
 import battleBg from '../../../assets/battle_bg.webp';
 import { motion } from 'framer-motion';
+import { Box } from '@mui/material';
 
 export const SectionContainer = styled("div")(({theme}) => ({
     backgroundSize: 'cover',
@@ -70,3 +71,19 @@ export const BotPokemonImage  = styled(motion.img)(({theme}) => ({
     top:'15%',
     right: '15%'
 }))
+
+export const UserLifeBar = styled(Box)(({theme}) => ({ 
+    width: '40%',
+    height:"125px",
+    background:"rgba(251,244,216,0.85)",
+    position: 'absolute',
+    bottom:'5%',
+    right: '5%',
+    borderRadius: '30px 10px 30px 10px',
+    boxShadow:"10px 10px 15px rgba(0,0,0,1)",
+    border: '4px groove rgba(0,0,0,.75)',
+    display:"flex",
+    alignItems:"start",
+    flexDirection:"column"
+}))
+
