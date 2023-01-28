@@ -62,3 +62,11 @@ export const UserPokemonImage  = styled(motion.img)(({theme}) => ({
     bottom:'-8%',
     left: '20%'
 }))
+
+export const BotPokemonImage  = styled(motion.img)(({theme}) => ({ 
+    width: '250x',
+    height: '250px',
+    position: 'absolute',
+    top:'15%',
+    right: '15%'
+}))

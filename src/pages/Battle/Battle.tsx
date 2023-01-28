@@ -11,6 +11,7 @@ import BotPokemon from "./style-components/components/BotPokemon";
 const Battle = () => {
   const { username } = useSelector( (store:AppStore) => store.user);
   const [ attackMove, setAttackMove] = useState(false);
+  const [ botAttackMove, setBotAttackMove] = useState(false);
   
   const handleAttack = () => {
     setAttackMove(true);
@@ -19,12 +20,21 @@ const Battle = () => {
     }, 500);
   }
 
+  const botAttack = () => {
+    setBotAttackMove(true);
+    setTimeout(() => {
+      setBotAttackMove(false)
+    }, 500);
+  }
+
+  
+
   return (
     <SectionContainer>
       <Stack width='75%' height='100%' direction="column">
         <BattleSectionContainer>
           <UserPokemon attackMove={attackMove}/>
-          <BotPokemon/>
+          <BotPokemon botAttackMove={botAttackMove}/>
         </BattleSectionContainer>
         <ActionsSection>
           <InnerContainerBorder className="center_abs_item">
@@ -33,7 +43,7 @@ const Battle = () => {
               <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>{username.toUpperCase()} do? </Typography>
             </Stack>
             <PixelatedButton  onClick={handleAttack } className="fightBtn" style={{ background:"#7b151e"}}>Fight</PixelatedButton>
-            <PixelatedButton className="changeBtn" style={{ background:"#bd6917"}}>Change</PixelatedButton>
+            <PixelatedButton onClick={botAttack } className="changeBtn" style={{ background:"#bd6917"}}>Change</PixelatedButton>
           </InnerContainerBorder>
         </ActionsSection>
       </Stack>

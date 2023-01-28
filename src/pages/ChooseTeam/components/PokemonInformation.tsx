@@ -28,7 +28,7 @@ const PokemonInformation = () => {
         let emptyIndex = newState.findIndex( elem => elem.name === '');
         console.log(emptyIndex);
         if( emptyIndex !== -1) {
-          let pokemonData = { name, id, attack, defense, speed, health, types, status, imageSpot, imageBack };
+          let pokemonData = { name, id, attack, defense, speed, health, types, status, imageSpot, imageBack, imageFront };
           dispatch( addPokemon({
             pokemonData,
             index: emptyIndex
