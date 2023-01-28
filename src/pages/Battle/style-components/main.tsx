@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 import battleBg from '../../../assets/battle_bg.webp';
-
+import { motion } from 'framer-motion';
 
 export const SectionContainer = styled("div")(({theme}) => ({
     backgroundSize: 'cover',
@@ -16,7 +16,8 @@ export const BattleSectionContainer = styled("div")(({theme}) => ({
     width:"100%",
     backgroundImage: `url(${battleBg})`,
     backgroundSize:"cover",
-    
+    position: 'relative',
+
     
 }))
 
@@ -51,4 +52,13 @@ export const PixelatedButton = styled("button")(({theme}) => ({
     color:"white",
     cursor:"pointer",
     letterSpacing:"3px"
+}))
+
+
+export const UserPokemonImage  = styled(motion.img)(({theme}) => ({ 
+    width: '350px',
+    height: '350px',
+    position: 'absolute',
+    bottom:'-8%',
+    left: '20%'
 }))

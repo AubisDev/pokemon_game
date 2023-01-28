@@ -4,6 +4,7 @@ export interface Pokemon extends Stats{
     id: string;
     imageSpot?: string;
     imageFront?: string;
+    imageBack?: string;
     abilities?: string[];
 }
 
