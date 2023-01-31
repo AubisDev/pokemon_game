@@ -15,7 +15,7 @@ import PlayerTeam from './PlayerTeam';
 
 const PokemonInformation = () => {
     const dispatch = useDispatch();
-    const { name, id, imageFront, imageSpot, imageBack, health, attack, defense, speed, types, status } = useSelector( (store: AppStore) => store.search);
+    const { name, id, imageFront, imageSpot, imageBack, health, attack, defense, speed, types, status, currentHealth } = useSelector( (store: AppStore) => store.search);
     const { userTeam } = useSelector( (store: AppStore) => store.teams);
     const typeInformation: ColorType = types ? colorTypesList(types[0]) : colorTypesList('none');
     const chartData:ChartData[] = attack ? CharDataAdapter({attack, defense, health,speed}) : charDataEmptyValues();
@@ -28,7 +28,7 @@ const PokemonInformation = () => {
         let emptyIndex = newState.findIndex( elem => elem.name === '');
         console.log(emptyIndex);
         if( emptyIndex !== -1) {
-          let pokemonData = { name, id, attack, defense, speed, health, types, status, imageSpot, imageBack, imageFront };
+          let pokemonData = { name, id, attack, defense, speed, health, types, status, imageSpot, imageBack, imageFront, currentHealth };
           dispatch( addPokemon({
             pokemonData,
             index: emptyIndex
@@ -52,7 +52,14 @@ const PokemonInformation = () => {
                       <PokemonImage color={typeInformation.bgColor} image={imageFront} name={name} gradientColor={typeInformation.bgGradient} />
                     </InformationContainer>
                   </Stack>
-                  <Button onClick={ handleClick} fullWidth={false} variant="contained" sx={{ width:'200px', marginX:"auto" ,position:"absolute", bottom:15, left:0, right:0}} >Add to my team</Button>
+                  <Button 
+                    onClick={ handleClick} 
+                    fullWidth={false} 
+                    variant="contained" 
+                    sx={{ width:'200px', marginX:"auto" ,position:"absolute", bottom:15, left:0, right:"0"}} 
+                  >
+                    Add to my team
+                  </Button>
                 </>
               )
               : null

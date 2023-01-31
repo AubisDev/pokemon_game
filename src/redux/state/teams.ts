@@ -2,22 +2,16 @@ import { createSlice, Slice } from "@reduxjs/toolkit";
 import { PayloadAction } from '@reduxjs/toolkit';
 import { Pokemon } from "../../models";
 import { Teams } from '../../models/teams.model';
+import { botTeamInitialState, userTeamInitialState } from '../../utilities/constants';
 
 
 
 const teamsInitialState:Teams = {
-    userTeam: [
-        {name:'', id: '0'},
-        {name:'', id: '1'},
-        {name:'', id: '2'},
-        {name:'', id: '3'},
-        {name:'', id: '4'},
-        {name:'', id: '5'},
-    ],
-    enemyTeam: []
+    userTeam: userTeamInitialState,
+    enemyTeam: botTeamInitialState
 }
 
-export const emptySpotState = {name:'', id: '0'};
+export const emptySpotState:Pokemon = {name:'', id: '0' , attack:0, defense:0, speed: 0, types:[], status:"dead", currentHealth:0, health:0, imageSpot:'',imageBack:'', imageFront:''};
 
 export const teamsSlice:Slice = createSlice({
     name: 'teams',
@@ -46,10 +40,17 @@ export const teamsSlice:Slice = createSlice({
             }
             return state
         },
+
+        setBotTeam: (state, action) => {
+            return {
+                ...state,
+                enemyTeam: action.payload
+            }
+        }
     }
 })
 
 
-export const { addPokemon, removePokemon } = teamsSlice.actions;
+export const { addPokemon, removePokemon, setBotTeam} = teamsSlice.actions;
 
 export default teamsSlice.reducer;

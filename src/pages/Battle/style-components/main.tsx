@@ -87,3 +87,18 @@ export const UserLifeBar = styled(Box)(({theme}) => ({
     flexDirection:"column"
 }))
 
+export const BotLifeBar = styled(Box)(({theme}) => ({ 
+    width: '40%',
+    height:"125px",
+    background:"rgba(251,244,216,0.85)",
+    position: 'absolute',
+    top:'7%',
+    left: '5%',
+    borderRadius: '30px 10px 30px 10px',
+    boxShadow:"10px 10px 15px rgba(0,0,0,1)",
+    border: '4px groove rgba(0,0,0,.75)',
+    display:"flex",
+    alignItems:"start",
+    flexDirection:"column"
+}))
+
