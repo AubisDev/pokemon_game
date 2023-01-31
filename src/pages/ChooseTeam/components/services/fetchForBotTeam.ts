@@ -6,7 +6,7 @@ const idArrays = generateRandomIdArray();
 
 function generateRandomIdArray (){
     const numberOfPokemons = 6;
-    return Array(numberOfPokemons).fill(0).map(() => Math.floor(1000 * Math.random())); // numbers from 0-50 (exclusive)
+    return Array(numberOfPokemons).fill(0).map(() => Math.floor(800 * Math.random())); // numbers from 0-50 (exclusive)
 
 }
 

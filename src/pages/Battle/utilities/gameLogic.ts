@@ -19,7 +19,6 @@ export const userAttackAction = ( newState: Pokemon, currentUserPokemon:Pokemon,
 
 export const botAttackAction = ( newState: Pokemon, currentUserPokemon:Pokemon, currentBotPokemon:Pokemon) => {
     let botDamage = calculateDamage(currentBotPokemon.attack, currentUserPokemon.defense, currentBotPokemon.types, currentUserPokemon.types);
-    console.log(botDamage)
     newState.currentHealth = Math.floor(newState.currentHealth - botDamage) < 0 ? 0 : Math.floor(newState.currentHealth - botDamage);
     if( newState.currentHealth === 0) newState.status = 'dead';
     return newState;

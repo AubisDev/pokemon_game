@@ -33,7 +33,7 @@ const PlayerTeam = () => {
         let adaptedBotTeamData = botTeam.map( (pokemon:Pokemon) => BotPokemonDataAdapter(pokemon));
         dispatch( setBotTeam(adaptedBotTeamData));
         dispatch( setStartersPokemons({
-          change: false,
+          pause: false,
           userPokemon: userTeam[0],
           botPokemon: adaptedBotTeamData[0]
         }))

@@ -1,5 +1,4 @@
 import { Overlay } from '../../style-components/home.styles-components';
-import PlayerTeam from './components/PlayerTeam';
 import { TeamSelectionContainer } from './style-components/main';
 import PokemonInformation from './components/PokemonInformation';
 

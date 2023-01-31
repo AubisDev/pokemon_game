@@ -7,8 +7,7 @@ import { AppStore } from '../../redux/store';
 import UserPokemon from "./components/UserPokemon";
 import { useRef, useState } from "react";
 import BotPokemon from "./components/BotPokemon";
-import { calculateDamage } from './utilities/DamageCalculator';
-import { botAttack, replaceBotPokemon, replaceCurrentPokemon, userAttack } from "../../redux/state/game";
+import { botAttack, pauseGame, removePause, replaceBotPokemon, replaceCurrentPokemon, userAttack } from "../../redux/state/game";
 import { Pokemon } from "../../models";
 import { botAttackAction, checkHealth, checkWhoIsFirstAttack, userAttackAction } from './utilities/gameLogic';
 
@@ -16,25 +15,24 @@ const Battle = () => {
   const dispatch = useDispatch();
   let botRef = useRef(0);
   let userRef = useRef(0);
-  const { userPokemon, botPokemon } = useSelector( (store:AppStore) => store.game);
+  let pauseRef = useRef(false);
+  const { userPokemon, botPokemon, pause } = useSelector( (store:AppStore) => store.game);
   const { userTeam, enemyTeam } = useSelector( (store:AppStore) => store.teams);
   const [ attackMove, setAttackMove] = useState(false);
   const [ botAttackMove, setBotAttackMove] = useState(false);
 
   const handleUserAction = (action:string) => {
-    let firstMove = checkWhoIsFirstAttack(userPokemon.speed, botPokemon.speed);
+    pauseRef.current = true;
     let botState = {...botPokemon};
-    let userState = {...userPokemon};
+    let currUserPokemon = {...userPokemon};
+    let firstMove = checkWhoIsFirstAttack(userPokemon.speed, botPokemon.speed);
     if( firstMove === 'user first'){
       handleUserAttack(botState, firstMove);
     } 
     else{
-      handleBotAttack(userState, firstMove);
-      
+      handleBotAttack(currUserPokemon, firstMove);
       //Todo: Dispatch que el juego se pause para que el usuario escoja el pokemon a utilizar
     }
-
-    
     //User
     //Todo sino, verifica que aun tenga pokemones vivos, en caso de, manda el proximo pokemon, sino la batalla termina
 
@@ -62,46 +60,51 @@ const Battle = () => {
 
   const handleUserAttack = (botState:Pokemon, turn: string) => {
     if( turn === 'user first'){
-      userAttackAnimation();
-      let updatedState = userAttackAction(botState, userPokemon, botPokemon );
-      dispatch( userAttack(updatedState) );
-      const isEnemyAlive = checkHealth(updatedState);
-      if( isEnemyAlive ) handleBotAttack(updatedState, turn);
-      else handleBotPokemonChange();
-    }
-    else{
       setTimeout(() => {
         userAttackAnimation();
-        let updatedState =   userAttackAction(botState, userPokemon, botPokemon );
+        const newCopy = {...botState}
+        let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
         dispatch( userAttack(updatedState) );
         const isEnemyAlive = checkHealth(updatedState);
         if( isEnemyAlive ) handleBotAttack(updatedState, turn);
         else handleBotPokemonChange();
+      }, 1000);
+    }
+    else{
+      setTimeout(() => {
+        userAttackAnimation();
+        const newCopy = {...botState}
+        let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
+        dispatch( userAttack(updatedState) );
+        const isEnemyAlive = checkHealth(updatedState);
+        if( !isEnemyAlive ) handleBotPokemonChange();
+        pauseRef.current = false;
       }, 3000);
     }
   }
 
-
-
-
-  const handleBotAttack = (userState: Pokemon, turn: string) => {
+  const handleBotAttack = (currUserPokemon: Pokemon, turn: string) => {
     if( turn === 'user first'){
       setTimeout(() => {
-          botAttackAnimation();       
-          let updatedState = botAttackAction(userState, userPokemon, botPokemon );
+          botAttackAnimation();
+          const uCopy = {...currUserPokemon}
+          let updatedState = botAttackAction(uCopy, userPokemon, botPokemon );
           dispatch( botAttack(updatedState) ); 
           const isUserAlive = checkHealth(updatedState);
-          if( isUserAlive ) handleUserAttack(updatedState, turn);
-          else handleUserPokemonChange();
+          if( !isUserAlive ) handleUserPokemonChange();
+          pauseRef.current = false;
       }, 3000);
     }
     else{
+      setTimeout(() => {
         botAttackAnimation();       
-        let updatedState = botAttackAction(userState, userPokemon, botPokemon );
+        const uCopy = {...currUserPokemon}
+        let updatedState = botAttackAction(uCopy, userPokemon, botPokemon );
         dispatch( botAttack(updatedState) ); 
         const isUserAlive = checkHealth(updatedState);
         if( isUserAlive ) handleUserAttack(updatedState, turn);
         else handleUserPokemonChange();
+      }, 1000);
     }
   }
 
@@ -144,8 +147,8 @@ const Battle = () => {
               <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>What will </Typography>
               <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>{userPokemon.name.toUpperCase()} do? </Typography>
             </Stack>
-            <PixelatedButton  onClick={ () => handleUserAction('attack') } className="fightBtn" style={{ background:"#7b151e"}}>Fight</PixelatedButton>
-            <PixelatedButton onClick={() => handleUserAction('change') } className="changeBtn" style={{ background:"#bd6917"}}>Change</PixelatedButton>
+            <PixelatedButton   onClick={ () => handleUserAction('attack') } className="fightBtn" style={{ background:"#7b151e"}}>Fight</PixelatedButton>
+            <PixelatedButton  onClick={() => handleUserAction('change') } className="changeBtn" style={{ background:"#bd6917"}}>Change</PixelatedButton>
           </InnerContainerBorder>
         </ActionsSection>
       </Stack>

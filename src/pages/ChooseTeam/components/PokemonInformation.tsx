@@ -1,7 +1,7 @@
 import { Box, Button, Stack } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppStore } from '../../../redux/store';
-import { ColorType, colorTypesList } from '../../../utilities';
+import { colorTypesList, TypeData } from '../../../utilities';
 import { charDataEmptyValues } from '../utilities';
 import PokemonSearchBar from './PokemonSearchBar';
 import RadarChartData from './RadarChartData';
@@ -17,7 +17,7 @@ const PokemonInformation = () => {
     const dispatch = useDispatch();
     const { name, id, imageFront, imageSpot, imageBack, health, attack, defense, speed, types, status, currentHealth } = useSelector( (store: AppStore) => store.search);
     const { userTeam } = useSelector( (store: AppStore) => store.teams);
-    const typeInformation: ColorType = types ? colorTypesList(types[0]) : colorTypesList('none');
+    const typeInformation: TypeData = types ? colorTypesList(types[0]) : colorTypesList('none');
     const chartData:ChartData[] = attack ? CharDataAdapter({attack, defense, health,speed}) : charDataEmptyValues();
     const foundPokemon = attack ? true : false;
 
@@ -26,7 +26,6 @@ const PokemonInformation = () => {
       let itsAlreadyInTeam = userTeam.some( elem => elem.id === id);
       if ( !itsAlreadyInTeam ){
         let emptyIndex = newState.findIndex( elem => elem.name === '');
-        console.log(emptyIndex);
         if( emptyIndex !== -1) {
           let pokemonData = { name, id, attack, defense, speed, health, types, status, imageSpot, imageBack, imageFront, currentHealth };
           dispatch( addPokemon({

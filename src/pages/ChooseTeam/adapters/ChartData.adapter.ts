@@ -6,7 +6,7 @@ export interface ChartData {
     fullMark: number;
 }
 
-export const CharDataAdapter = ({attack, defense, speed, health }:Stats): ChartData[] => {
+export const CharDataAdapter = ({attack, defense, speed, health }:any): ChartData[] => {
     return [
         {
             statName:'Attack',
