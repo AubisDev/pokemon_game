@@ -2,13 +2,15 @@ import { colorTypesList } from '../../../utilities/colorsTypesList';
 
 
 export const calculateDamage = ( attackerPoints:any, defenderPoints:any, attackerTypes:any, defenderTypes:any) => {
-    const value1 = ((12*50)/250);
-    const value2 = Math.round((attackerPoints/defenderPoints));
+    const value1 = ((12*5)/250);
+    const value2 = Math.round((attackerPoints/defenderPoints)); 
     const multiplier = value1 * value2;
-    const baseDmg = 25;
-    const critical = CriticalChance();
+    const baseDmg = 50; 
+    const critical = CriticalChance(); 1
     const typeEfectivesness = typeDamageCalculator(attackerTypes, defenderTypes);
-    return multiplier * baseDmg * critical * typeEfectivesness;
+    const totalDmg = multiplier * baseDmg * critical * typeEfectivesness;
+    console.log(totalDmg);
+    return totalDmg
 }
 
 

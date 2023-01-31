@@ -10,9 +10,8 @@ interface IUserPokemonProps{
 }
 
 const UserPokemon = ({attackMove}: IUserPokemonProps) => {
-    const { userTeam } = useSelector( (store:AppStore) => store.teams);
     const { userPokemon } = useSelector( (store:AppStore) => store.game);
-
+    const normalise = (currValue:number) => (100*(currValue/userPokemon.health));
 
 return (
     <>
@@ -37,7 +36,7 @@ return (
         }
         <UserLifeBar>
             <Typography textAlign='left' fontSize="24px" letterSpacing={2} px={4} py={1} textTransform='capitalize'>{userPokemon.name}</Typography>
-            <LinearProgress variant='determinate' color='success' value={100} valueBuffer={userPokemon.currentHealth}  sx={{ width:'80%', height:'20px', borderRadius:'10px',marginLeft:"50px", border:"4px solid rgba(0,0,0,0.30)", boxShadow:'2px 4px 2px rgba(0,0,0,0.1)' }} />
+            <LinearProgress variant='determinate' color='success' value={normalise(userPokemon.currentHealth)}  sx={{ width:'80%', height:'20px', borderRadius:'10px',marginLeft:"50px", border:"4px solid rgba(0,0,0,0.30)", boxShadow:'2px 4px 2px rgba(0,0,0,0.1)' }} />
             <Typography fontSize="20px" position='absolute' bottom={12} right='15%'>{userPokemon.currentHealth}/{userPokemon.health}</Typography>
         </UserLifeBar>
 

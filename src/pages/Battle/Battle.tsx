@@ -8,58 +8,33 @@ import UserPokemon from "./components/UserPokemon";
 import { useRef, useState } from "react";
 import BotPokemon from "./components/BotPokemon";
 import { calculateDamage } from './utilities/DamageCalculator';
-import { botAttack, moveBotIndex, replaceBotPokemon, userAttack } from "../../redux/state/game";
+import { botAttack, replaceBotPokemon, replaceCurrentPokemon, userAttack } from "../../redux/state/game";
 import { Pokemon } from "../../models";
-import { botAttackAction, checkEnemyHealth, checkWhoIsFirstAttack, userAttackAction } from './utilities/gameLogic';
+import { botAttackAction, checkHealth, checkWhoIsFirstAttack, userAttackAction } from './utilities/gameLogic';
 
 const Battle = () => {
   const dispatch = useDispatch();
-  let indexRef = useRef(0);
-  const { userPokemon, botPokemon, botCurrentIndex } = useSelector( (store:AppStore) => store.game);
+  let botRef = useRef(0);
+  let userRef = useRef(0);
+  const { userPokemon, botPokemon } = useSelector( (store:AppStore) => store.game);
   const { userTeam, enemyTeam } = useSelector( (store:AppStore) => store.teams);
   const [ attackMove, setAttackMove] = useState(false);
   const [ botAttackMove, setBotAttackMove] = useState(false);
 
   const handleUserAction = (action:string) => {
-    let newState = {...botPokemon};
     let firstMove = checkWhoIsFirstAttack(userPokemon.speed, botPokemon.speed);
+    let botState = {...botPokemon};
+    let userState = {...userPokemon};
     if( firstMove === 'user first'){
-      userAttackAnimation();
-      let updatedState =   userAttackAction(newState,userPokemon, botPokemon );
-      dispatch( userAttack(updatedState) );
-      const isEnemyAlive = checkEnemyHealth(botPokemon);
-      if( isEnemyAlive ){
-
-      }
+      handleUserAttack(botState, firstMove);
     } 
-
-    if( action === 'attack' ){
-
-      //Todo lOGICA DE QUITAR VIDA Y VERIFICAR ESTADO
-    }
     else{
+      handleBotAttack(userState, firstMove);
+      
       //Todo: Dispatch que el juego se pause para que el usuario escoja el pokemon a utilizar
-
     }
 
-    //Todo: Si el pokemon enemigo aun tiene vida, ataca
-    setTimeout(() => {
-      if( newState.status !== 'dead' ){
-        botAttackAnimation();
-        newState = {...userPokemon};
-        let updatedState =   botAttackAction(newState ,userPokemon, botPokemon );
-        dispatch( botAttack(updatedState) );
-        //!Logica para cambiar de pokemon
-      }
-
-
-
-
-      else{
-        dispatch( replaceBotPokemon(enemyTeam[indexRef.current+1]));
-        indexRef.current = indexRef.current+1;
-      }
-    }, 4000);
+    
     //User
     //Todo sino, verifica que aun tenga pokemones vivos, en caso de, manda el proximo pokemon, sino la batalla termina
 
@@ -78,6 +53,83 @@ const Battle = () => {
       setBotAttackMove(false)
     }, 500);
   }
+
+
+
+
+
+
+
+  const handleUserAttack = (botState:Pokemon, turn: string) => {
+    if( turn === 'user first'){
+      userAttackAnimation();
+      let updatedState = userAttackAction(botState, userPokemon, botPokemon );
+      dispatch( userAttack(updatedState) );
+      const isEnemyAlive = checkHealth(updatedState);
+      if( isEnemyAlive ) handleBotAttack(updatedState, turn);
+      else handleBotPokemonChange();
+    }
+    else{
+      setTimeout(() => {
+        userAttackAnimation();
+        let updatedState =   userAttackAction(botState, userPokemon, botPokemon );
+        dispatch( userAttack(updatedState) );
+        const isEnemyAlive = checkHealth(updatedState);
+        if( isEnemyAlive ) handleBotAttack(updatedState, turn);
+        else handleBotPokemonChange();
+      }, 3000);
+    }
+  }
+
+
+
+
+  const handleBotAttack = (userState: Pokemon, turn: string) => {
+    if( turn === 'user first'){
+      setTimeout(() => {
+          botAttackAnimation();       
+          let updatedState = botAttackAction(userState, userPokemon, botPokemon );
+          dispatch( botAttack(updatedState) ); 
+          const isUserAlive = checkHealth(updatedState);
+          if( isUserAlive ) handleUserAttack(updatedState, turn);
+          else handleUserPokemonChange();
+      }, 3000);
+    }
+    else{
+        botAttackAnimation();       
+        let updatedState = botAttackAction(userState, userPokemon, botPokemon );
+        dispatch( botAttack(updatedState) ); 
+        const isUserAlive = checkHealth(updatedState);
+        if( isUserAlive ) handleUserAttack(updatedState, turn);
+        else handleUserPokemonChange();
+    }
+  }
+
+  const handleBotPokemonChange = () => {
+    dispatch( replaceBotPokemon(enemyTeam[botRef.current+1]));
+    botRef.current = botRef.current+1;
+  }
+
+  const handleUserPokemonChange = () => {
+    dispatch( replaceCurrentPokemon(userTeam[userRef.current+1]));
+    userRef.current = userRef.current+1;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <SectionContainer>
@@ -101,4 +153,4 @@ const Battle = () => {
     </SectionContainer>
   )
 }
-export default Battle
+export default Battle;
