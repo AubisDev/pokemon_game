@@ -43,7 +43,7 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
     <Grid item xs={12}  height="90px"  borderRadius='10px'  >
       {
         pokemon.name.length === 0 ? (
-          <GridItem onClick={() => console.log(pokemon)}>
+          <GridItem>
             <Typography width='30%' color='white' py={1} fontWeight={700} fontSize={14} letterSpacing={1}>?</Typography>
             <Box display='flex' flexDirection='column' width='70%' alignItems='center'>
               <Typography color='white' py={1} fontWeight={700} fontSize={14} letterSpacing={1}>EMPTY SPOT</Typography>
@@ -61,7 +61,12 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
             </BouncingContainer>
             <Box display='flex' flexDirection='column' width='70%' height='100%' alignItems='start' ml={5} color="white">
               <Stack direction='row' alignItems='center' justifyContent='space-evenly' width='100%'>
-                <Typography color='white' pt={1} fontWeight={700} fontSize={16} letterSpacing={2} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
+                {
+                  status === 'alive'
+                  ? <Typography component='p' color='white' pt={1} fontWeight={700} fontSize={16} letterSpacing={2} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
+                  : <Typography component='s' color='white' pt={1} fontWeight={700} fontSize={16} letterSpacing={2} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
+
+                }
                 <Stack direction='row'  pt={1}>
                   {
                     types?.map( (pokeType:any, index) => (
@@ -80,9 +85,19 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
                 }
               </Stack>
               <Stack direction='row' width="100%" alignItems='center' spacing={1} position='relative' >
-                <Typography  fontSize='17px'>HP </Typography>
-                <Typography fontFamily='Yrsa' fontSize='17px' position='absolute' left={0} right={0} zIndex={100}>{currentHealth}/{health} </Typography>
-                <LinearProgress variant='determinate' color={healthBarColors} value={normalizedHealth} sx={{ width:'80%', height:'15px', borderRadius:'10px'}} />
+               {
+                  status === 'alive'
+                  ? 
+                  (
+                    <>
+                      <Typography  fontSize='17px'>HP </Typography>
+                      <Typography fontFamily='Yrsa' fontSize='17px' position='absolute' left={0} right={0} zIndex={100}>{currentHealth}/{health} </Typography>
+                      <LinearProgress variant='determinate' color={healthBarColors} value={normalizedHealth} sx={{ width:'80%', height:'15px', borderRadius:'10px'}} />
+                    </>
+                  )
+                  :
+                  <Typography fontSize='17px' color="white" width='90%' borderRadius='10px' sx={{ background:"#7b151e"}}>Unable to fight </Typography>
+                }
               </Stack>
               <Stack direction='row' spacing={2} fontFamily='Yrsa' fontSize='15px'>
                 <Typography >Atk: {attack} </Typography>

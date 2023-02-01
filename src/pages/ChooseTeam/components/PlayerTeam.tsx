@@ -11,7 +11,7 @@ import useSnackbar from '../../../hooks/useSnackbar';
 import { fetchBotTeamService } from '../services/fetchForBotTeam';
 import { setBotTeam } from '../../../redux/state/teams';
 import { setStartersPokemons } from '../../../redux/state/game';
-import { BotPokemonDataAdapter, PokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
+import { BotPokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
 import { Pokemon } from '../../../models';
 import { useState } from 'react';
 
