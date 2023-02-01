@@ -29,4 +29,7 @@ export const checkHealth = (pokemon:Pokemon) => {
     return pokemon.status === 'alive';
 }
 
-    
+
+export const delay = (timeMs:number) => new Promise(
+    resolve => setTimeout(resolve, timeMs)
+);

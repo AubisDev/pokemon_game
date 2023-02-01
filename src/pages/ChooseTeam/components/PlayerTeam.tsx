@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useLocation, useNavigate } from 'react-router';
 import { checkUserTeam } from '../utilities/userTeamChecker';
 import useSnackbar from '../../../hooks/useSnackbar';
-import { fetchBotTeamService } from './services/fetchForBotTeam';
+import { fetchBotTeamService } from '../services/fetchForBotTeam';
 import { setBotTeam } from '../../../redux/state/teams';
 import { setStartersPokemons } from '../../../redux/state/game';
 import { BotPokemonDataAdapter, PokemonDataAdapter } from '../../../adapters/PokemonData.adapter';

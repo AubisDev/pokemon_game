@@ -8,7 +8,8 @@ export interface IGame{
     userPokemon: Pokemon;
     botPokemon: Pokemon;
     pause: boolean;
-
+    messageOne: string;
+    messageTwo: string;
 }
 
 
@@ -16,6 +17,8 @@ const gameInitialState: IGame= {
     userPokemon: {name:'', id: '0' , attack:0, defense:0, speed: 0, types:[], status:"dead", currentHealth:0, health:0, imageSpot:'',imageBack:'', imageFront:''},
     botPokemon: {name:'', id: '0' , attack:0, defense:0, speed: 0, types:[], status:"dead", currentHealth:0, health:0, imageSpot:'',imageBack:'', imageFront:''},
     pause: false,
+    messageOne: '',
+    messageTwo: ''
 }
 
 
@@ -25,6 +28,7 @@ export const gameSlice:Slice = createSlice({
     reducers: {
 
         setStartersPokemons: (state, action) => action.payload,
+        
         replaceCurrentPokemon: (state, action) => {
             return{
                 ...state,
@@ -51,10 +55,11 @@ export const gameSlice:Slice = createSlice({
                 userPokemon: action.payload
             }
         },
-        pauseGame: (state) => {
+        setMessage: (state, action) => {
             return{
                 ...state,
-                pause: true
+                messageOne: action.payload.messageOne,
+                messageTwo: action.payload.messageTwo
             }
         }, 
 
@@ -68,6 +73,6 @@ export const gameSlice:Slice = createSlice({
 })
 
 
-export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, pauseGame, removePause  } = gameSlice.actions;
+export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, setMessage  } = gameSlice.actions;
 
 export default gameSlice.reducer;

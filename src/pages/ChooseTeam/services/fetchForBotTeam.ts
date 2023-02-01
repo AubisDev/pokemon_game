@@ -1,12 +1,12 @@
-import { PokemonDataAdapter } from '../../../../adapters/PokemonData.adapter';
-import { Pokemon } from '../../../../models/pokemon.model';
+import { PokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
+import { Pokemon } from '../../../models/pokemon.model';
 
 const apiURL = 'https://pokeapi.co/api/v2/pokemon/';
 const idArrays = generateRandomIdArray();
 
 function generateRandomIdArray (){
     const numberOfPokemons = 6;
-    return Array(numberOfPokemons).fill(0).map(() => Math.floor(800 * Math.random())); // numbers from 0-50 (exclusive)
+    return Array(numberOfPokemons).fill(0).map(() => Math.floor(800 * Math.random()) + 1); // numbers from 0-50 (exclusive)
 
 }
 
