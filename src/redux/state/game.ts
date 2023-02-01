@@ -28,7 +28,7 @@ export const gameSlice:Slice = createSlice({
     reducers: {
 
         setStartersPokemons: (state, action) => action.payload,
-        
+
         replaceCurrentPokemon: (state, action) => {
             return{
                 ...state,
@@ -62,6 +62,13 @@ export const gameSlice:Slice = createSlice({
                 messageTwo: action.payload.messageTwo
             }
         }, 
+        
+        setPause: (state) => {
+            return{
+                ...state,
+                pause: false
+            }
+        },
 
         removePause: (state) => {
             return{
@@ -73,6 +80,6 @@ export const gameSlice:Slice = createSlice({
 })
 
 
-export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, setMessage  } = gameSlice.actions;
+export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, setMessage, setPause, removePause } = gameSlice.actions;
 
 export default gameSlice.reducer;

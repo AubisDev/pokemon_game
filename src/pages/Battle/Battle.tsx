@@ -7,7 +7,7 @@ import BotPokemon from "./components/BotPokemon";
 import useGame from "./hooks/useGame";
 
 const Battle = () => {
-  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction } = useGame();
+  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction, pauseRef, handleUserPokemonChange } = useGame();
 
   return (
     <SectionContainer>
@@ -22,12 +22,20 @@ const Battle = () => {
               <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>{messageOne} </Typography>
               <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>{messageTwo}</Typography>
             </Stack>
-            <PixelatedButton onClick={ () => handleUserAction('attack') } className="fightBtn" style={{ background:"#7b151e"}}>Fight</PixelatedButton>
-            <PixelatedButton onClick={() => handleUserAction('change') } className="changeBtn" style={{ background:"#bd6917"}}>Change</PixelatedButton>
+            {
+              pauseRef.current ? null : 
+              (
+                <>
+                  <PixelatedButton disabled={pauseRef.current} onClick={ () => handleUserAction('attack') } className="fightBtn" style={{ background:"#7b151e"}}>{pauseRef.current ? 'Wait' : 'Fight'}</PixelatedButton>
+                  <PixelatedButton disabled={pauseRef.current} onClick={() => handleUserAction('change') } className="changeBtn" style={{ background:"#bd6917"}}>{pauseRef.current ? 'Wait' : 'Change'}</PixelatedButton>
+                </>
+              )
+            }
+            
           </InnerContainerBorder>
         </ActionsSection>
       </Stack>
-      <PlayerTeam />
+      <PlayerTeam handleUserPokemonChange={handleUserPokemonChange}/>
     </SectionContainer>
   )
 }

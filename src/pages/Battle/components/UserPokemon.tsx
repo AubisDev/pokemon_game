@@ -11,7 +11,7 @@ interface IUserPokemonProps{
 
 const UserPokemon = ({attackMove}: IUserPokemonProps) => {
     const { userPokemon } = useSelector( (store:AppStore) => store.game);
-    const normalise = (currValue:number) => (100*(currValue/userPokemon.health));
+    const normalise = (currValue:number) => Math.floor((100*(currValue/userPokemon.health)));
     const normalizedHealth = normalise(userPokemon.currentHealth);
     const healthBarColors = normalizedHealth > 50 ? 'success' : (normalizedHealth > 20 &&  normalizedHealth <= 50) ? 'warning' : 'error'
 

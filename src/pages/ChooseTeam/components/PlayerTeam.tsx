@@ -15,14 +15,17 @@ import { BotPokemonDataAdapter, PokemonDataAdapter } from '../../../adapters/Pok
 import { Pokemon } from '../../../models';
 
 
+interface IPlayerTeam {
+  handleUserPokemonChange: (pokemon?: Pokemon) => Promise<void>;
+}
 
-const PlayerTeam = () => {
+const PlayerTeam = ({handleUserPokemonChange}:IPlayerTeam) => {
     const dispatch = useDispatch();
     const {errorSB, throwErrorSnackbar, ErrorSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const location = useLocation();
     const { username } = useSelector( (store:AppStore) => store.user );
-    const { userTeam, enemyTeam } = useSelector( (store:AppStore) => store.teams );
+    const { userTeam } = useSelector( (store:AppStore) => store.teams );
     const isInBattleMode = location.pathname.includes("/battle");
 
     const handleClick = async () => {
@@ -51,7 +54,9 @@ const PlayerTeam = () => {
         <TeamCardsTitle >{`${username}'s`} <Box component='span' color='white' pl={1} >Team</Box></TeamCardsTitle>
         <Grid container rowGap={1}  gridTemplateRows='repeat(1, minmax(0, 1fr))' py={1} px={1} width="100%" height='80%'  alignItems='center'  margin='auto' >
         {
-            userTeam.map( pokemon => <PokemonGridCard key={uuidv4()} {...pokemon}/>)
+            userTeam.map( pokemon => (
+                <PokemonGridCard key={uuidv4()} pokemon={pokemon} handleUserPokemonChange={handleUserPokemonChange}/>
+            ))
         }
         </Grid>
         { isInBattleMode ? null : 
