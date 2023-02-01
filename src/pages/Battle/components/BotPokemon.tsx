@@ -3,12 +3,13 @@ import { AppStore } from '../../../redux/store';
 import {  BotLifeBar, BotPokemonImage } from '../style-components/main';
 import { motion } from 'framer-motion';
 import { LinearProgress, Typography } from '@mui/material';
-
+import pokeball from '../../../assets/pokeball.webp';
 interface IBotPokemonProps{
     botAttackMove: boolean;
+    throwBotPokeball: boolean;
 }
 
-const BotPokemon = ({botAttackMove}:IBotPokemonProps) => {
+const BotPokemon = ({botAttackMove, throwBotPokeball}:IBotPokemonProps) => {
     const { botPokemon } = useSelector( (store:AppStore) => store.game);
     const normalise = (currValue:number) => (100*(currValue/botPokemon.health));
     const normalizedHealth = normalise(botPokemon.currentHealth);
@@ -16,25 +17,39 @@ const BotPokemon = ({botAttackMove}:IBotPokemonProps) => {
 
   return (
     <>
-    {
+    {   
+        throwBotPokeball ?
+        (
+            <motion.img 
+            animate={{
+                translateX:[75,-75],
+                translateY: [0,-25,75],
+                rotate:[0,-360]
+            }}
+            transition={{ ease:'easeInOut', duration:1.5}}
+            src={ pokeball} 
+            alt={botPokemon.name} 
+            style={{ position:"absolute", width:"25px", top:'10%', right:"20%"}}/>
+        )
+        :
         botAttackMove ? 
         (   
-                <BotPokemonImage 
-                    src={ botPokemon.imageSpot} 
-                    alt={botPokemon.name} 
-                    animate={{
-                        translateX:-400,
-                        translateY: 250
-                    }}
+            <BotPokemonImage 
+                src={ botPokemon.imageSpot} 
+                alt={botPokemon.name} 
+                animate={{
+                    translateX:-400,
+                    translateY: 250
+                }}
 
-                    transition={{
-                        duration:0.5
-                    }}
-                />
+                transition={{
+                    duration:0.5
+                }}
+            />
         )
         :
         (
-                <BotPokemonImage src={ botPokemon.imageSpot} alt={botPokemon.name} />
+            <BotPokemonImage src={botPokemon.imageSpot} alt={botPokemon.name} />
         )
     }
 

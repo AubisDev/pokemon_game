@@ -17,7 +17,8 @@ const useGame = () => {
     const { username } = useSelector( (store:AppStore) => store.user);
     const [ attackMove, setAttackMove] = useState(false);
     const [ botAttackMove, setBotAttackMove] = useState(false);
-    const [ throwPokeball, setThrowPokeball] = useState(false);
+    const [ throwUserPokeball, setThrowUserPokeball] = useState(false);
+    const [ throwBotPokeball, setThrowBotPokeball] = useState(false);
   
     const handleUserAction = async(action:string) => {
       pauseRef.current = true;
@@ -60,11 +61,18 @@ const useGame = () => {
         }, 500);
     }
     
-    const throwPokeballAnimation = () => {
-        setThrowPokeball(true);
+    const throwUserPokeballAnimation = () => {
+        setThrowUserPokeball(true);
         setTimeout(() => {
-            setThrowPokeball(false)
-        }, 1000);
+            setThrowUserPokeball(false)
+        }, 1500);
+    }
+    
+    const throwBotPokeballAnimation = () => {
+        setThrowBotPokeball(true);
+        setTimeout(() => {
+            setThrowBotPokeball(false)
+        }, 1500);
     }
     
     const newTurnMessage = async ( pokemon:Pokemon) => {
@@ -79,7 +87,7 @@ const useGame = () => {
     }
   
     useEffect(() => {
-        throwPokeballAnimation()
+        throwUserPokeballAnimation()
         newTurnMessage(userPokemon);
     }, [])
     
@@ -99,6 +107,7 @@ const useGame = () => {
             const newCopy = {...botState}
             let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
             dispatch( userAttack(updatedState) );
+            await delay(1000);
             const isEnemyAlive = checkHealth(updatedState);
             if( isEnemyAlive ) await handleBotAttack({...userPokemon}, turn);
             else await handleBotPokemonChange();
@@ -161,8 +170,8 @@ const useGame = () => {
         }));
         await delay(1500);
         const nextPokemon = enemyTeam[ botRef.current + 1];
-        // throwPokeballAnimation();
-        // await delay(1500);
+        throwBotPokeballAnimation();
+        await delay(1500);
         dispatch( replaceBotPokemon(nextPokemon));
         dispatch( setMessage({
             messageOne: `Bot enemy sends:`,
@@ -171,7 +180,6 @@ const useGame = () => {
         await delay(2000);
         botRef.current = botRef.current+1;
         await newTurnMessage(userPokemon);
-        pauseRef.current = false;
     }
   
     const handleUserPokemonChange = async (pokemon?: Pokemon) => {
@@ -192,7 +200,7 @@ const useGame = () => {
         await delay(1500);
         const nextPokemon = userTeam[ userRef.current + 1];
         dispatch( replaceCurrentPokemon(nextPokemon));
-        throwPokeballAnimation();
+        throwUserPokeballAnimation();
         await delay(1500);
         dispatch( setMessage({
             messageOne: `${username} sends:`,
@@ -222,7 +230,8 @@ const useGame = () => {
     handleUserAction,
     pauseRef,
     handleUserPokemonChange,
-    throwPokeball
+    throwUserPokeball,
+    throwBotPokeball
   }
 }
 export default useGame

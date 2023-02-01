@@ -8,10 +8,10 @@ import pokeball from '../../../assets/pokeball.webp';
 
 interface IUserPokemonProps{
     attackMove: boolean;
-    throwPokeball: boolean
+    throwUserPokeball: boolean
 }
 
-const UserPokemon = ({attackMove, throwPokeball}: IUserPokemonProps) => {
+const UserPokemon = ({attackMove, throwUserPokeball}: IUserPokemonProps) => {
     const { userPokemon } = useSelector( (store:AppStore) => store.game);
     const normalise = (currValue:number) => Math.floor((100*(currValue/userPokemon.health)));
     const normalizedHealth = normalise(userPokemon.currentHealth);
@@ -20,7 +20,7 @@ const UserPokemon = ({attackMove, throwPokeball}: IUserPokemonProps) => {
     return (
     <>
         {
-            throwPokeball ?
+            throwUserPokeball ?
             (
                 <motion.img 
                 animate={{
