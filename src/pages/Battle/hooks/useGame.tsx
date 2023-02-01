@@ -14,6 +14,7 @@ const useGame = () => {
     let pauseRef = useRef(false);
     const { userPokemon, botPokemon, pause, messageOne, messageTwo} = useSelector( (store:AppStore) => store.game);
     const { userTeam, enemyTeam } = useSelector( (store:AppStore) => store.teams);
+    const { username } = useSelector( (store:AppStore) => store.user);
     const [ attackMove, setAttackMove] = useState(false);
     const [ botAttackMove, setBotAttackMove] = useState(false);
   
@@ -61,6 +62,7 @@ const useGame = () => {
     const newTurnMessage = async ( pokemon:Pokemon) => {
       let firstLine = 'What will';
       let secondLine = `${pokemon.name.toUpperCase()} do?`;
+      pauseRef.current = false;
       dispatch(setMessage({
         messageOne: firstLine,
         messageTwo: secondLine
@@ -100,7 +102,6 @@ const useGame = () => {
             dispatch( userAttack(updatedState) );
             const isEnemyAlive = checkHealth(updatedState);
             if( !isEnemyAlive ) await handleBotPokemonChange();
-            pauseRef.current = false;
             await newTurnMessage(userPokemon);
             
         }   
@@ -114,7 +115,7 @@ const useGame = () => {
       }));
       await delay(1500);
         if( turn === 'user first'){
-        await delay(1500);
+            await delay(1500);
             botAttackAnimation();
             const uCopy = {...currUserPokemon};
             let updatedState = botAttackAction(uCopy, userPokemon, botPokemon );
@@ -124,7 +125,6 @@ const useGame = () => {
             await delay(1000);
             const isUserAlive = checkHealth(updatedState);
             if( !isUserAlive ) await handleUserPokemonChange();
-            pauseRef.current = false;
             await newTurnMessage(userPokemon);
           
         }
@@ -146,10 +146,21 @@ const useGame = () => {
     }
   
     const handleBotPokemonChange = async () => {
-      dispatch( replaceBotPokemon(enemyTeam[botRef.current+1]));
-      botRef.current = botRef.current+1;
-      pauseRef.current = false;
-      await newTurnMessage(userPokemon);
+        dispatch( setMessage({
+            messageOne: `${botPokemon.name.charAt(0).toUpperCase().concat(botPokemon.name.slice(1))} has fainted`,
+            messageTwo: ''
+        }));
+        await delay(1500);
+        const nextPokemon = enemyTeam[ botRef.current + 1];
+        dispatch( replaceBotPokemon(nextPokemon));
+        dispatch( setMessage({
+            messageOne: `Bot enemy sends:`,
+            messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
+        }));
+        await delay(2000);
+        botRef.current = botRef.current+1;
+        await newTurnMessage(userPokemon);
+        pauseRef.current = false;
     }
   
     const handleUserPokemonChange = async (pokemon?: Pokemon) => {
@@ -163,12 +174,20 @@ const useGame = () => {
     // }
     // else{
        // const index = userTeam.findIndex( elem => elem.currentHealth > 0);
+       dispatch( setMessage({
+            messageOne: `${userPokemon.name.charAt(0).toUpperCase().concat(userPokemon.name.slice(1))} has fainted`,
+            messageTwo: ''
+        }));
+        await delay(1500);
         const nextPokemon = userTeam[ userRef.current + 1];
         dispatch( replaceCurrentPokemon(nextPokemon));
-        await delay(1000);
+        dispatch( setMessage({
+            messageOne: `${username} sends:`,
+            messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
+        }));
+        await delay(2000);
         userRef.current = userRef.current + 1;
         await newTurnMessage(nextPokemon);
-    // }
       
     }
     

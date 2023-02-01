@@ -1,5 +1,5 @@
 
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, CircularProgress, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppStore } from '../../../redux/store';
 import { TeamCardsContainer, TeamCardsTitle } from "../style-components";
@@ -13,6 +13,7 @@ import { setBotTeam } from '../../../redux/state/teams';
 import { setStartersPokemons } from '../../../redux/state/game';
 import { BotPokemonDataAdapter, PokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
 import { Pokemon } from '../../../models';
+import { useState } from 'react';
 
 
 interface IPlayerTeam {
@@ -27,11 +28,12 @@ const PlayerTeam = ({handleUserPokemonChange}:IPlayerTeam) => {
     const { username } = useSelector( (store:AppStore) => store.user );
     const { userTeam } = useSelector( (store:AppStore) => store.teams );
     const isInBattleMode = location.pathname.includes("/battle");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleClick = async () => {
       let isTeamComplete = checkUserTeam(userTeam);
       if( isTeamComplete ) {
-        
+        setLoading(true);
         let botTeam:any = await fetchBotTeamService();
         let adaptedBotTeamData = botTeam.map( (pokemon:Pokemon) => BotPokemonDataAdapter(pokemon));
         dispatch( setBotTeam(adaptedBotTeamData));
@@ -41,6 +43,7 @@ const PlayerTeam = ({handleUserPokemonChange}:IPlayerTeam) => {
           botPokemon: adaptedBotTeamData[0]
         }))
         setTimeout(() => {
+          setLoading(false);
           navigate('/battle', {replace:true})
         }, 3000);
       }
@@ -72,6 +75,14 @@ const PlayerTeam = ({handleUserPokemonChange}:IPlayerTeam) => {
 
         {
           errorSB ? ErrorSnackbar("Team is not complete, must select 6 pokemons") : null
+        }
+        {
+          loading ? (
+            <Box height="150px" width="275px" color='white' border='2px solid orange' display='flex' alignItems='center' justifyContent='center' flexDirection='column'  className='center_abs_item' sx={{ background: 'rgba(0,0,0,0.85)', borderRadius:"20px"}} >
+              <Typography textAlign='center' py={2} > PREPARING ENEMY TEAM... </Typography>
+              <CircularProgress />
+            </Box>
+          ) : null
         }
       </TeamCardsContainer>
     )

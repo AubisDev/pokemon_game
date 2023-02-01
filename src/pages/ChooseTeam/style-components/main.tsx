@@ -67,10 +67,21 @@ export const GridItem = styled('div')(({ theme }) => ({
     
 }))
 
-export const Circle = styled('div')(({ theme }) => ({ 
+export const WhiteBgCircle = styled('div')(({ theme }) => ({ 
     height: '250%',
     width: '100%',
     background: 'rgba(215,215,215,.85)',
+    position: 'absolute',
+    zIndex: -1,
+    left: '-70%',
+    borderRadius:"50%",
+    border:"2px solid orange"
+}))
+
+export const RedBgCircle = styled('div')(({ theme }) => ({ 
+    height: '250%',
+    width: '100%',
+    background: 'rgba(123,21,30,.85)',
     position: 'absolute',
     zIndex: -1,
     left: '-70%',

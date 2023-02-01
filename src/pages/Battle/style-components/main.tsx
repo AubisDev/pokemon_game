@@ -32,7 +32,7 @@ export const ActionsSection = styled("div")(({theme}) => ({
 
 export const InnerContainerBorder = styled("div")(({theme}) => ({  
     width:"98%",
-    height:"90%",
+    height:"85%",
     border:"4px solid darkorange",
     background:"linear-gradient( #21314b, #21314b,#21314b ) padding-box, blue",
     display:"flex",

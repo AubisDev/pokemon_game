@@ -1,6 +1,6 @@
 import { Box, Button, Grid, LinearProgress, Stack, Typography } from "@mui/material"
 import pokeball  from '../../../assets/pokeball.webp';
-import { BouncingContainer, Circle, GridItem } from "../style-components";
+import { BouncingContainer, GridItem, WhiteBgCircle } from "../style-components";
 import { Pokemon } from '../../../models/';
 import { v4 as uuidv4 } from 'uuid';
 import { colorTypesList } from "../../../utilities";
@@ -9,6 +9,7 @@ import { removePokemon } from "../../../redux/state/teams";
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from "react-router";
 import { AppStore } from '../../../redux/store';
+import { RedBgCircle } from '../style-components/main';
 
 interface IPokemonGridCard {
   pokemon: Pokemon;
@@ -21,7 +22,7 @@ interface IPokemonGridCard {
 const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { name, id, attack, defense, speed, health, types, imageSpot, currentHealth } = pokemon;
+  const { name, id, attack, defense, speed, health, types, imageSpot, currentHealth, status } = pokemon;
   const { pause } = useSelector((store:AppStore) => store.game);
   const normalise = (currValue:number) => Math.floor((100*(currValue/pokemon.health)));
   const normalizedHealth = normalise(pokemon.currentHealth);
@@ -48,7 +49,8 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
               <Typography color='white' py={1} fontWeight={700} fontSize={14} letterSpacing={1}>EMPTY SPOT</Typography>
               <img src={pokeball} alt="pokeball" style={{ width:"20px"}}/>
             </Box>
-            <Circle/>
+            { status === 'alive' ? <WhiteBgCircle /> :  <RedBgCircle/>}
+            
           </GridItem>
         )
         :
@@ -88,7 +90,7 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
                 <Typography >Speed: {speed} </Typography>
               </Stack>
             </Box>
-            <Circle/>
+            { status === 'alive' ? <WhiteBgCircle /> :  <RedBgCircle/>}
           </GridItem>
         )
       }
