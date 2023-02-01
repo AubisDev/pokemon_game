@@ -7,13 +7,13 @@ import BotPokemon from "./components/BotPokemon";
 import useGame from "./hooks/useGame";
 
 const Battle = () => {
-  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction, pauseRef, handleUserPokemonChange } = useGame();
+  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction, pauseRef, handleUserPokemonChange, throwPokeball } = useGame();
 
   return (
     <SectionContainer>
       <Stack width='75%' height='100%' direction="column">
         <BattleSectionContainer>
-          <UserPokemon attackMove={attackMove}/>
+          <UserPokemon attackMove={attackMove} throwPokeball={throwPokeball}/>
           <BotPokemon botAttackMove={botAttackMove}/>
         </BattleSectionContainer>
         <ActionsSection>
