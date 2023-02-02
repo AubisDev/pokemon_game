@@ -35,7 +35,7 @@ const Battle = () => {
           </InnerContainerBorder>
         </ActionsSection>
       </Stack>
-      <PlayerTeam handleUserPokemonChange={handleUserPokemonChange}/>
+      <PlayerTeam />
     </SectionContainer>
   )
 }

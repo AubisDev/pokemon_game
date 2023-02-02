@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
+import { ChartSquare, StatText } from '../style-components';
 
 interface IStatProps {
     statName: string;
@@ -13,15 +14,15 @@ const StatChar = ({statName, stat, color}:IStatProps) => {
     const dataArray = new Array(StatsPercentagePoints).fill(true).concat( new Array(Rest).fill(false));
     
   return (
-    <Box display='flex' flexDirection='row' alignItems="center" pb={4} >
-        <Typography fontSize={18} fontWeight={600}>{statName}:  </Typography>
+    <Stack direction="row" pb={3} alignItems='center' >
+        <StatText>{statName}: </StatText>
         { dataArray && 
             dataArray?.map( data => 
-                data ?  <span key={uuidv4()} style={{width:"12px", height:"8px", background:color.toString(), marginLeft:"4px"}}></span>
-                     :  <span key={uuidv4()} style={{width:"12px", height:"8px", background:"white", marginLeft:"4px"}}></span>
+                data ?  <ChartSquare key={uuidv4()} sx={{background:color.toString()}}></ChartSquare>
+                     :  <ChartSquare key={uuidv4()} sx={{background:"white"}}></ChartSquare>
             )
         }
-    </Box>
+    </Stack>
   )
 }
 export default StatChar

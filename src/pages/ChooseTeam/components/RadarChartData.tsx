@@ -1,5 +1,6 @@
-import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from "recharts"
+import { PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from "recharts"
 import { ChartData } from "../adapters"
+import { RadarChartComponent } from "../style-components";
 
 interface IRadarChartDataProps{
     data: ChartData[];
@@ -9,12 +10,11 @@ interface IRadarChartDataProps{
 const RadarChartData = ({data,color}:IRadarChartDataProps) => {
 
   return (
-    <RadarChart
+    <RadarChartComponent
         outerRadius={150}
         height={450}
         width={550}
         data={data}
-        style={{ transform: 'scale(0.70)', fontSize:"22px", marginTop: '-3em'}}
     >
         <PolarGrid />
         <PolarAngleAxis dataKey="statName"  />
@@ -26,7 +26,7 @@ const RadarChartData = ({data,color}:IRadarChartDataProps) => {
             fill={color}
             fillOpacity={0.6}
         />
-  </RadarChart>
+  </RadarChartComponent>
   )
 }
 export default RadarChartData

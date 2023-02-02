@@ -13,13 +13,12 @@ import { RedBgCircle } from '../style-components/main';
 
 interface IPokemonGridCard {
   pokemon: Pokemon;
-  handleUserPokemonChange: (pokemon?: Pokemon) => Promise<void>;
 }
 
 
 
 
-const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) => {
+const PokemonGridCard = ({pokemon }:IPokemonGridCard) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { name, id, attack, defense, speed, health, types, imageSpot, currentHealth, status } = pokemon;
@@ -33,11 +32,6 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
   
   const isInBattleMode = location.pathname.includes("/battle");
 
-  const handlePokemonChange = ( pokemon:Pokemon) => {
-    if( isInBattleMode && pause){
-      handleUserPokemonChange(pokemon)
-    }
-  }
 
   return (
     <Grid item xs={12}  height="90px"  borderRadius='10px'  >
@@ -55,7 +49,7 @@ const PokemonGridCard = ({pokemon, handleUserPokemonChange }:IPokemonGridCard) =
         )
         :
         (
-          <GridItem onClick={() => handlePokemonChange(pokemon)}>
+          <GridItem >
             <BouncingContainer>
               <img src={imageSpot} alt="pokeball" style={{ width:"80px", height:'80px'}}/>
             </BouncingContainer>

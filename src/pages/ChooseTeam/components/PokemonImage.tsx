@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import { PokemonName } from "../style-components"
+import { PokemonCompleteImage, PokemonImageContainer, PokemonImageSectionContainer, PokemonName } from "../style-components"
 import PulseEffect from "./PulseEffect"
 
 interface IPokemonImageProps{
@@ -11,14 +11,14 @@ interface IPokemonImageProps{
 
 const PokemonImage = ({name, color, image, gradientColor}:IPokemonImageProps ) => {
     return (
-        <Box display='flex' flexDirection='column' alignItems='center' width='50%' height="100%" position='relative'  m='auto' mt={5}  >
-            <PokemonName style={{ backgroundImage:color }}>{name}</PokemonName>
-            <Box width={300} height={300} zIndex={100} position='relative'>
+        <PokemonImageSectionContainer>
+            <PokemonName style={{ backgroundImage:gradientColor}}>{name}</PokemonName>
+            <PokemonImageContainer >
                 <PulseEffect color={gradientColor}>
-                <img className="center_abs_item" src={image} alt={name} style={{ display:"flex", width:"100%", height:"100%",  WebkitBoxReflect:"below 0 linear-gradient(transparent, transparent, #005)"}} />
+                    <PokemonCompleteImage className="center_abs_item" src={image} alt={name} />
                 </PulseEffect >
-            </Box>
-        </Box>
+            </PokemonImageContainer>
+        </PokemonImageSectionContainer>
     )
 }
 export default PokemonImage

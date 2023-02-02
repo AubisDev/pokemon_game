@@ -78,12 +78,12 @@ const useGame = () => {
     const newTurnMessage = async ( pokemon:Pokemon) => {
         let firstLine = 'What will';
         let secondLine = `${pokemon.name.toUpperCase()} do?`;
-        pauseRef.current = false;
         dispatch(setMessage({
             messageOne: firstLine,
             messageTwo: secondLine
         }))
         await delay(1000);
+        pauseRef.current = false;
     }
   
     useEffect(() => {
@@ -100,9 +100,9 @@ const useGame = () => {
         messageOne:`${userPokemon.name.charAt(0).toUpperCase().concat(userPokemon.name.slice(1))} used attack`,
         messageTwo: ''
       }));
-      await delay(1500);
+      await delay(750);
         if( turn === 'user first'){
-            await delay(1500);
+            await delay(1250);
             userAttackAnimation();
             const newCopy = {...botState}
             let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
@@ -113,7 +113,7 @@ const useGame = () => {
             else await handleBotPokemonChange();
         }
         else{
-            await delay(1500);
+            await delay(1250);
             userAttackAnimation();
             const newCopy = {...botState}
             let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
@@ -131,9 +131,9 @@ const useGame = () => {
         messageOne: `${botPokemon.name.charAt(0).toUpperCase().concat(botPokemon.name.slice(1))} used attack`,
         messageTwo: ''
       }));
-      await delay(1500);
+      await delay(750);
         if( turn === 'user first'){
-            await delay(1500);
+            await delay(1250);
             botAttackAnimation();
             const uCopy = {...currUserPokemon};
             let updatedState = botAttackAction(uCopy, userPokemon, botPokemon );
@@ -147,7 +147,7 @@ const useGame = () => {
           
         }
         else{
-            await delay(1500);
+            await delay(1250);
             botAttackAnimation();       
             const uCopy = {...currUserPokemon}
             let updatedState = botAttackAction(uCopy, userPokemon, botPokemon );

@@ -8,7 +8,7 @@ import RadarChartData from './RadarChartData';
 import PokemonImage from './PokemonImage';
 import { CharDataAdapter, ChartData } from '../adapters';
 import Stats from './Stats';
-import { InformationContainer, PokemonData } from '../style-components';
+import { FindPokemonSectionContainer, InformationContainer, MainSectionContainer, PokemonData } from '../style-components';
 import { addPokemon } from '../../../redux/state/teams';
 import PlayerTeam from './PlayerTeam';
 
@@ -37,8 +37,8 @@ const PokemonInformation = () => {
     }
 
     return (
-    <Box height='100vh' display='flex' flexDirection='row' position='relative' width='100vw'  overflow='hidden' sx={{ background:'rgba(0,0,0,0.90)', position:"relative"}}>
-      <Box display='flex' flexDirection='column' width='75%'>
+    <MainSectionContainer>
+      <FindPokemonSectionContainer>
         <PokemonSearchBar/>
             {foundPokemon ? (
                 <>
@@ -63,9 +63,9 @@ const PokemonInformation = () => {
               )
               : null
             }
-        </Box>
+        </FindPokemonSectionContainer>
       <PlayerTeam/>
-    </Box>
+    </MainSectionContainer>
   )
 }
 export default PokemonInformation

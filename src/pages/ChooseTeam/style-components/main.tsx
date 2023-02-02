@@ -1,6 +1,35 @@
 import { styled } from "@mui/system";
 import team_sel_bg from '../../../assets/team-sel-bg.webp';
+import { Stack, Box, Typography } from '@mui/material';
+import { RadarChart } from "recharts";
 
+
+
+export const MainSectionContainer = styled('div')(({ theme }) =>({
+    height:'100vh', 
+    display:'flex', 
+    flexDirection:'row', 
+    position:'relative',
+    width:'100vw',  
+    overflow:'hidden', 
+    background:'rgba(0,0,0,0.90)', 
+
+    [theme.breakpoints.down("md")]:{
+        height:"auto",
+        overflow:'auto', 
+        flexDirection:'column', 
+    }
+}))
+
+export const FindPokemonSectionContainer = styled('div')(({ theme }) =>({
+    display:'flex', 
+    flexDirection:'column', 
+    width:'75%',  
+
+    [theme.breakpoints.down("md")]:{
+        width:"100%"
+    }
+}))
 
 export const TeamSelectionContainer = styled('div')(({ theme }) =>({
     width: '100vw',
@@ -110,12 +139,17 @@ export const InformationContainer =  styled('div')(({ theme }) => ({
     width: '100%',
     display:"flex",
     flexDirection:"row",
+
+    [theme.breakpoints.down("md")]:{
+        flexDirection:"column-reverse",
+        height:"auto"
+    },
     
 }))
 
 export const PokemonData =  styled('div')(({ theme }) => ({ 
     height: '100%',
-    width: '300px',
+    width: '50%',
     display:"flex",
     flexDirection:"column",
     color:"white",
@@ -123,54 +157,26 @@ export const PokemonData =  styled('div')(({ theme }) => ({
     margin:'0 auto'
 }))
 
-
-export const CircleSmall =  styled('div')(({ theme }) => ({
-    width: 500,
-    height: 500,
-    position: 'relative',
-
-    "&:before":{
-        content: '""',
-        position: 'absolute',
-        top:"100px",
-        right:"100px",
-        left:"100px",
-        bottom:"100px",
-        border: '20px solid #fff',
-        borderRadius:"50%",
-        boxShadow: "0 0 60px #0f0, inset 0 0 50px #0f0",
-        WebkitBoxReflect: "below 10px linear-gradient(transparent, transparent, #0002)",
-        animation: 'animate 5s linear infinite'
+export const PokemonImageSectionContainer =  styled('div')(({ theme }) => ({ 
+    position:'relative',
+    margin:'auto',
+    marginTop:5,
+    height: '100%', 
+    width: '50%',
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"center",
+    [theme.breakpoints.down("md")]:{
+        height: '70vh',
+        marginTop:50,
+        marginBottom: 125
     },
-
-    "@keyframes animate":{
-        '0%':{
-            boxShadow:" 0 0 50px #0f0, inset 0 0 50px #0f0",
-            filter: 'hue-rotate(0deg)'
-        },
-        '20%':{
-            boxShadow:" 0 0 60px #0f0, inset 0 0 60px #0f0"
-        },
-        '40%':{
-            boxShadow:" 0 0 40px #0f0, inset 0 0 40px #0f0"
-        },
-        '60%':{
-            boxShadow:" 0 0 80px #0f0, inset 0 0 80px #0f0"
-        },
-        '80%':{
-            boxShadow:" 0 0 100px #0f0, inset 0 0 100px #0f0"
-        },
-        '100%':{
-            boxShadow:" 0 0 50px #0f0, inset 0 0 50px #0f0",
-            filter: 'hue-rotate(360deg)'
-        }
-    }
-   
 }))
 
 
+
+
 export const PokemonName =  styled('div')(({ theme }) => ({ 
-    
     backgroundSize: '200% auto',
     color:'#fff',
     backgroundClip: 'text',
@@ -184,12 +190,15 @@ export const PokemonName =  styled('div')(({ theme }) => ({
     textTransform: 'capitalize',
     alignText:"center",
 
-
     "@keyframes textclip":{
         "to":{
             backgroundPosition: "200% center"
         }
-    }
+    },
+
+    [theme.breakpoints.down("md")]:{
+        fontSize:"36px",
+    },
 }))
 
 
@@ -212,5 +221,128 @@ export const Pulse =  styled('div')(({ theme }) => ({
             transform: 'scale(2.5, 2.5)',
             opacity: 0,
         }
-    }
+    },
+
+    [theme.breakpoints.down("md")]:{
+        width: '75px',
+        height: '75px',
+    },
+}))
+
+
+/* Stats components*/
+export const StatsContainer =  styled(Stack)(({ theme }) => ({ 
+    width:'80%',
+   
+    alignItems:"center",
+
+    [theme.breakpoints.down("md")]:{
+        height:'auto',
+        paddingTop: '3em',
+        paddingBottom: '5em'
+    },
+}))
+
+export const StatsTitle =  styled(Typography)(({ theme }) => ({ 
+    fontSize:"2em",
+
+    [theme.breakpoints.up("xl")]:{
+        fontSize:"2.2em",
+    },
+    [theme.breakpoints.down("md")]:{
+        fontSize:"1.8em",
+    },
+
+}))
+
+export const StatText =  styled(Typography)(({ theme }) => ({ 
+    fontSize:"1em",
+    textAlign:"left",
+    fontWeight:600,
+    [theme.breakpoints.up("xl")]:{
+        fontSize:"1.25em",
+    },
+    [theme.breakpoints.down("md")]:{
+        fontSize:"0.8em",
+    },
+}))
+
+export const statChartContainer =  styled(Stack)(({ theme }) => ({
+    alignItems:"center" 
+
+}))
+
+export const RadarChartComponent =  styled(RadarChart)(({ theme }) => ({
+    transform: 'scale(0.70)',
+    fontSize:"22px", 
+    marginTop: '-3em',
+
+    [theme.breakpoints.down("md")]:{
+        fontSize:"18px", 
+        color:"white",
+    },
+}))
+
+
+
+export const ChartSquare =  styled(Box)(({ theme }) => ({
+    width:"8px",
+    height:"8px",
+    marginLeft:"3px",
+
+    [theme.breakpoints.up("xl")]:{
+        width:"10px",
+        height:"10px",
+    },
+    [theme.breakpoints.down("md")]:{
+        width:"6px",
+        height:"6px",
+        marginLeft:"2px",
+    },
+}))
+
+export const TypeName =  styled(Typography)(({ theme }) => ({
+    fontSize:"20px",
+    fontWeight:600,
+    textTransform: 'capitalize',
+    [theme.breakpoints.down("md")]:{
+        fontSize:"16px",
+    },
+}))
+
+export const TypeImage = styled('img')(({ theme }) => ({
+    width: 24, 
+    height: 24, 
+    paddingLeft:4
+}))
+
+export const PokemonImageContainer =  styled(Typography)(({ theme }) => ({
+    width:"50%",
+    height:"50%",
+    zIndex: 100,
+    position:"relative",
+
+    [theme.breakpoints.down("md")]:{
+        width:"100%",
+        height:"100%",
+    },
+}))
+
+export const PokemonCompleteImage =  styled('img')(({ theme }) => ({
+    display:"flex", 
+    width:"100%", 
+    height:"100%",  
+    WebkitBoxReflect:"below 0 linear-gradient(transparent, transparent, #005)",
+    position: 'absolute',
+    left: 0,
+    right: 0 ,
+    top: 0 ,
+    bottom: 0 ,
+    margin:'auto',
+
+    [theme.breakpoints.down("md")]:{
+        width:"150px",
+        height:"200px",
+        position:"relative",
+    },
 }))

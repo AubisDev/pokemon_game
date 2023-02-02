@@ -16,11 +16,9 @@ import { Pokemon } from '../../../models';
 import { useState } from 'react';
 
 
-interface IPlayerTeam {
-  handleUserPokemonChange: (pokemon?: Pokemon) => Promise<void>;
-}
 
-const PlayerTeam = ({handleUserPokemonChange}:IPlayerTeam) => {
+
+const PlayerTeam = () => {
     const dispatch = useDispatch();
     const {errorSB, throwErrorSnackbar, ErrorSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -58,7 +56,7 @@ const PlayerTeam = ({handleUserPokemonChange}:IPlayerTeam) => {
         <Grid container rowGap={1}  gridTemplateRows='repeat(1, minmax(0, 1fr))' py={1} px={1} width="100%" height='80%'  alignItems='center'  margin='auto' >
         {
             userTeam.map( pokemon => (
-                <PokemonGridCard key={uuidv4()} pokemon={pokemon} handleUserPokemonChange={handleUserPokemonChange}/>
+                <PokemonGridCard key={uuidv4()} pokemon={pokemon} />
             ))
         }
         </Grid>
