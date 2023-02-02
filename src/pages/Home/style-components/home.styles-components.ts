@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import home_bg from '../assets/home-bg-2.webp';
+import home_bg from '../../../assets/home-bg-2.webp';
 import { Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
@@ -10,6 +10,7 @@ export const Container = styled('div')(({ theme }) =>({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     position: 'relative',
+    overflowX:"hidden",
 
     [theme.breakpoints.down("md")]:{
         height:"auto"
@@ -33,6 +34,24 @@ export const Overlay = styled('div')(({ theme }) => ({
 
 }))
 
+export const HomeOverlay = styled('div')(({ theme }) => ({
+    width: '100vw',
+    height: '100vh',
+    background: 'rgba(0,0,0,.10)',
+    position: 'relative',
+    flexDirection:'row',
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    
+    [theme.breakpoints.down("md")]:{
+        flexDirection: 'column',
+        height:"auto",
+    }
+
+
+}))
+
 export const MainContainer = styled('div')(({ theme }) =>({
     width:"375px",
     height:"600px",
@@ -53,13 +72,17 @@ export const MainContainer = styled('div')(({ theme }) =>({
 
     [theme.breakpoints.down("md")]:{
         margin:'1.5em 0',
-        width:"400px"
+        width:"90%",
+        height:"90vh",
     }
 }))
 
-export const FormContainer = styled('div')({
-    
-})
+export const PokemonLogo = styled('img')(({ theme }) =>({
+    width:"300px",
+    [theme.breakpoints.down("md")]:{
+        width:"215px",
+    }
+}))
 
 export const CommonButton = styled("button")({
     marginTop: '26px', 
@@ -78,22 +101,31 @@ export const CommonButton = styled("button")({
 })
 
 
-export const TitleText = styled(Typography)({
+export const TitleText = styled(Typography)(({ theme }) =>({
     fontSize: '2.8em',
     fontWeight:"700",
     lineHeight: '1em',
     textShadow:'-1px 0px 0px white, 1px 0px 0px white, 0px -1px 0px white, 0px 1px 0px white',
     paddingRight:"0.25em",
-})
+    textAlign:'center',
+    
+    [theme.breakpoints.down("md")]:{
+        fontSize:"2.3em",
+    }
+}))
 
-export const QuestionSection = styled("ul")({
+export const QuestionSection = styled("ul")(({ theme }) =>({
     display: 'flex',
     flexDirection:"column",
     justifyContent:"space-evenly",
     height: '275px',
     width: "400px",
-    borderRadius: '10px'
-})
+    borderRadius: '10px',
+
+    [theme.breakpoints.down("md")]:{
+        width:"90%"
+    }
+}))
 
 export const Question = styled('li')({
     wordBreak: 'break-word',
@@ -103,7 +135,7 @@ export const Question = styled('li')({
     fontWeight: 700
 })
 
-export const Answer = styled('span')({
+export const Answer = styled('span')(({ theme }) =>({
     width: '70%',
     wordBreak: 'break-word',
     fontSize: '17px',
@@ -113,4 +145,8 @@ export const Answer = styled('span')({
     paddingTop: '6px',
     marginLeft:"10px",
     fontFamily: 'Yrsa',
-})
+
+    [theme.breakpoints.down("md")]:{
+        width:"90%"
+    }
+}))
