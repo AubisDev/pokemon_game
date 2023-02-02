@@ -51,21 +51,21 @@ const PokemonGridCard = ({pokemon }:IPokemonGridCard) => {
         (
           <GridItem >
             <BouncingContainer>
-              <img src={imageSpot} alt="pokeball" style={{ width:"80px", height:'80px'}}/>
+              <img src={imageSpot} alt="pokeball" style={{ width:"100%", height:'100%', position:'absolute', left: 0,right: 0 ,top: 0 ,bottom: 0 ,margin:'auto',}}/>
             </BouncingContainer>
-            <Box display='flex' flexDirection='column' width='70%' height='100%' alignItems='start' ml={5} color="white">
+            <Box display='flex' flexDirection='column' width='70%' height='100%' alignItems='start' ml={{xs:3,sm:5}} color="white">
               <Stack direction='row' alignItems='center' justifyContent='space-evenly' width='100%'>
                 {
                   status === 'alive'
-                  ? <Typography component='p' color='white' pt={1} fontWeight={700} fontSize={16} letterSpacing={2} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
-                  : <Typography component='s' color='white' pt={1} fontWeight={700} fontSize={16} letterSpacing={2} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
+                  ? <Typography component='p' color='white' pt={1} fontWeight={700} fontSize={{xs:14, sm:16}} letterSpacing={{xs:1, sm:2}} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
+                  : <Typography component='s' color='white' pt={1} fontWeight={700} fontSize={{xs:14, sm:16}} letterSpacing={{xs:1, sm:2}} textTransform="capitalize" fontFamily='sans-serif' >{name}</Typography>
 
                 }
                 <Stack direction='row'  pt={1}>
                   {
                     types?.map( (pokeType:any, index) => (
                         <Box key={uuidv4()} display='flex' flexDirection='row' alignItems='center'>
-                        <img src={colorTypesList(types[index]).symbol} alt={`${pokeType} type`} style={{ width:18, height:18, paddingLeft:4}}/>
+                          <img src={colorTypesList(types[index]).symbol} alt={`${pokeType} type`} style={{ width:18, height:18, paddingLeft:4}}/>
                         </Box>
                     ))
                   }
@@ -78,13 +78,13 @@ const PokemonGridCard = ({pokemon }:IPokemonGridCard) => {
                   ) : null
                 }
               </Stack>
-              <Stack direction='row' width="100%" alignItems='center' spacing={1} position='relative' >
+              <Stack direction='row' width="100%" alignItems='center' spacing={1} py={{xs:0.5,sm:0}} position='relative' >
                {
                   status === 'alive'
                   ? 
                   (
                     <>
-                      <Typography  fontSize='17px'>HP </Typography>
+                      <Typography  fontSize={{xs:'15px', sm:'17px'}}>HP </Typography>
                       <Typography fontFamily='Yrsa' fontSize='17px' position='absolute' left={0} right={0} zIndex={100}>{currentHealth}/{health} </Typography>
                       <LinearProgress variant='determinate' color={healthBarColors} value={normalizedHealth} sx={{ width:'80%', height:'15px', borderRadius:'10px'}} />
                     </>
@@ -93,10 +93,10 @@ const PokemonGridCard = ({pokemon }:IPokemonGridCard) => {
                   <Typography fontSize='17px' color="white" width='90%' borderRadius='10px' sx={{ background:"#7b151e"}}>Unable to fight </Typography>
                 }
               </Stack>
-              <Stack direction='row' spacing={2} fontFamily='Yrsa' fontSize='15px'>
-                <Typography >Atk: {attack} </Typography>
-                <Typography >Def: {defense} </Typography>
-                <Typography >Speed: {speed} </Typography>
+              <Stack direction='row' spacing={{xs:1,sm:2}} fontFamily='Yrsa' >
+                <Typography fontSize={{xs:'14px', sm:'15px'}}>Atk: {attack} </Typography>
+                <Typography fontSize={{xs:'14px', sm:'15px'}}>Def: {defense} </Typography>
+                <Typography fontSize={{xs:'14px', sm:'15px'}}>Speed: {speed} </Typography>
               </Stack>
             </Box>
             { status === 'alive' ? <WhiteBgCircle /> :  <RedBgCircle/>}

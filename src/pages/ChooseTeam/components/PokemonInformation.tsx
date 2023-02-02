@@ -55,7 +55,7 @@ const PokemonInformation = () => {
                     onClick={ handleClick} 
                     fullWidth={false} 
                     variant="contained" 
-                    sx={{ width:'200px', marginX:"auto" ,position:"absolute", bottom:15, left:0, right:"0"}} 
+                    sx={{ width:'200px', marginX:"auto" ,position:{xs:'relative',sm:'absolute'}, marginBottom:{xs:'3em',sm:0}, bottom:15, left:0, right:"0"}} 
                   >
                     Add to my team
                   </Button>

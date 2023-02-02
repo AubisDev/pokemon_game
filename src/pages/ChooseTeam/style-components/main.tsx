@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 import team_sel_bg from '../../../assets/team-sel-bg.webp';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Box, Typography, Grid } from '@mui/material';
 import { RadarChart } from "recharts";
 
 
@@ -11,13 +11,29 @@ export const MainSectionContainer = styled('div')(({ theme }) =>({
     flexDirection:'row', 
     position:'relative',
     width:'100vw',  
-    overflow:'hidden', 
+    overflow:'hidden',
     background:'rgba(0,0,0,0.90)', 
 
     [theme.breakpoints.down("md")]:{
         height:"auto",
         overflow:'auto', 
         flexDirection:'column', 
+        overflowX:'hidden', 
+    }
+}))
+
+
+export const GridContainer = styled(Grid)(({ theme }) =>({
+    gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+    width:"100%",
+    height:"80%",
+    alignitems:"center",
+    margin:"auto",
+
+
+    [theme.breakpoints.down("md")]:{
+        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+        height:"auto",
     }
 }))
 
@@ -53,7 +69,11 @@ export const TeamCardsContainer  = styled('div')(({ theme }) =>({
     flexDirection:"column",
     alignItems:"center",
     borderLeft:'1px solid rgba(113,115,115,0.25)',
-    position:"relative"
+    position:"relative",
+
+    [theme.breakpoints.down("md")]:{
+        width: '100%',
+    }
 }))
 
 
@@ -66,10 +86,17 @@ export const TeamCardsTitle = styled('div')(({ theme }) =>({
     display:"flex",
     flexDirection: 'row',
     position:"absolute",
-    top:"5%"
+    top:"5%",
+
+    [theme.breakpoints.down("md")]:{
+        position: 'relative',
+        textAlign:"center",
+        fontSize: 26,
+        paddingTop: '8px',
+        borderTop: '1px solid rgba(255,255,255,0.25)'
+    }
 }))
 
-{/* <Box width="30%" height='100px' display='flex' alignItems='center' justifyContent='center'> */}
 
 export const BouncingContainer = styled('div')(({ theme }) => ({ 
     width: '30%',
@@ -79,6 +106,14 @@ export const BouncingContainer = styled('div')(({ theme }) => ({
     justifyContent:"center",
     animation: 'bouncer 0.25 linear infinite' ,
     transformOrigin:"bottom",
+    position:"relative",
+
+    [theme.breakpoints.down("md")]:{
+        width: '100px',
+        height: '80px',
+    }
+
+
 }))
 
 export const GridItem = styled('div')(({ theme }) => ({
@@ -129,9 +164,25 @@ export const SearchBarContainer = styled('div')(({ theme }) => ({
     color: "white",
     borderRadius: 5,
 
+    [theme.breakpoints.down("md")]:{
+        height: 'auto',
+   },
+
 }))
 
+export const Form = styled('form')(({ theme }) => ({ 
+    display:"flex", 
+    flexDirection:"row", 
+    padding:0, 
+    margin:0, 
+    alignItems:'center', 
+    justifyContent:'center',
 
+    [theme.breakpoints.down("md")]:{
+         flexDirection:"column", 
+    },
+
+}))
 
 
 export const InformationContainer =  styled('div')(({ theme }) => ({ 
@@ -341,8 +392,25 @@ export const PokemonCompleteImage =  styled('img')(({ theme }) => ({
     margin:'auto',
 
     [theme.breakpoints.down("md")]:{
-        width:"150px",
+        width:"200px",
         height:"200px",
         position:"relative",
     },
 }))
+
+/* User Team */
+export const GridItemText =  styled(Typography)(({ theme }) => ({
+    width:"30%", 
+    color:"white",
+    fontWeight:700,
+    fontSize:"14px",
+    letterSpacing:"2px",
+
+
+    [theme.breakpoints.down("md")]:{
+        
+    },
+}))
+
+
+

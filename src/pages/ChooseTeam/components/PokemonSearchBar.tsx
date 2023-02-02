@@ -2,7 +2,7 @@ import { Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { SearchBarContainer } from "../style-components/"
+import { SearchBarContainer, Form } from "../style-components/";
 import { fetchPokemonData } from '../utilities/';
 import { PokemonDataAdapter } from '../../../adapters/';
 import { setPokemonData } from "../../../redux/state/pokemon";
@@ -26,19 +26,18 @@ const PokemonSearchBar = () => {
       
   return (
     <SearchBarContainer>
-        
-        <form style={{ display:"flex", flexDirection:"row", padding:0, margin:0, alignItems:'center', justifyContent:'center'}}>
-        <Typography pb={1}  textAlign="left" variant="subtitle1"> Search a Pokemon</Typography>
+        <Form >
+        <Typography pb={1} textAlign="left" variant="subtitle1"> Search a Pokemon</Typography>
             <TextField
                 id="username-input"
                 name='username'
                 placeholder="eg: Pikachu"
                 value={searchInput}
                 onChange={ (e) => handleChange(e)}
-                sx={{padding:'0 1em'}}
+                sx={{padding:{xs:0,sm:'0 1em'}}}
             />
-            <Button type="submit" onClick={ (e) => handleSubmit(e)} style={{ background:"rgb(8,81,122)", boxShadow:'0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }} > Search </Button>
-        </form>
+            <Button type="submit"  onClick={ (e) => handleSubmit(e)} sx={{ marginTop:'10px', background:"rgb(8,81,122)", boxShadow:'0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }} > Search </Button>
+        </Form>
         <Typography textAlign='center' variant="subtitle2" color="darkblue)">Please make sure to write the name correctly</Typography>
     </SearchBarContainer>
   )

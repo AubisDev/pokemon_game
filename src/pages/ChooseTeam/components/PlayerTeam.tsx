@@ -2,7 +2,7 @@
 import { Box, Button, Grid, CircularProgress, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppStore } from '../../../redux/store';
-import { TeamCardsContainer, TeamCardsTitle } from "../style-components";
+import { TeamCardsContainer, TeamCardsTitle, GridContainer } from "../style-components";
 import PokemonGridCard from "./PokemonGridCard";
 import { v4 as uuidv4 } from 'uuid';
 import { useLocation, useNavigate } from 'react-router';
@@ -51,15 +51,13 @@ const PlayerTeam = () => {
     }
 
     return (
-      <TeamCardsContainer >
+      <TeamCardsContainer>
         <TeamCardsTitle >{`${username}'s`} <Box component='span' color='white' pl={1} >Team</Box></TeamCardsTitle>
-        <Grid container rowGap={1}  gridTemplateRows='repeat(1, minmax(0, 1fr))' py={1} px={1} width="100%" height='80%'  alignItems='center'  margin='auto' >
+        <GridContainer container py={1} px={1} rowGap={1} >
         {
-            userTeam.map( pokemon => (
-                <PokemonGridCard key={uuidv4()} pokemon={pokemon} />
-            ))
+          userTeam.map( pokemon => <PokemonGridCard key={uuidv4()} pokemon={pokemon} />)
         }
-        </Grid>
+        </GridContainer>
         { isInBattleMode ? null : 
           <Button 
             fullWidth 
