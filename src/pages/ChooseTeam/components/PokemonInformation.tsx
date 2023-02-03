@@ -109,7 +109,7 @@ const PokemonInformation = () => {
       {
         openDifficultyMenu ? 
         (
-          <Box width='100%' height='100%' position='absolute' sx={{background:"rgba(0,0,0,0.75)"}}>
+          <Box width='100%' height='100%' position='fixed' zIndex={200} sx={{background:"rgba(0,0,0,0.75)"}}>
             <Box height="225px" width="275px" color='white' border='2px solid orange' display='flex' alignItems='center' justifyContent='center' flexDirection='column'  className='center_abs_item' sx={{ background: 'rgba(0,0,0,0.85)', borderRadius:"20px"}} >
             <Typography textAlign='center' py={2} fontSize={20}>
               {loading ? 'Calling trainer' : 'Select your enemy'}

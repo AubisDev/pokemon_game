@@ -41,7 +41,7 @@ const PokemonSearchBar = () => {
                 placeholder="eg: Pikachu"
                 value={searchInput}
                 onChange={ (e) => handleChange(e)}
-                sx={{padding:{xs:0,sm:'0 1em'}}}
+                sx={{padding:{xs:'1em',sm:'0 1em'}}}
             />
             <Button type="submit" variant="contained" onClick={ (e) => handleSubmit(e)} sx={{ mt:'-1', color:"white", background:"rgb(8,81,122)", boxShadow:'0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }} > Search </Button>
         </Form>

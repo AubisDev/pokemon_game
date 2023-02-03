@@ -34,7 +34,7 @@ const PokemonGridCard = ({pokemon }:IPokemonGridCard) => {
 
 
   return (
-    <Grid item xs={12}  height="90px"  borderRadius='10px'  >
+    <Grid item xs={12} sm={6} md={12}  height="90px"  borderRadius='10px'  >
       {
         pokemon.name.length === 0 ? (
           <GridItem>

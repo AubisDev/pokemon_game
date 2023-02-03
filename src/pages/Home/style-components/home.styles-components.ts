@@ -14,7 +14,8 @@ export const Container = styled('div')(({ theme }) =>({
   
 
     [theme.breakpoints.down("md")]:{
-        height:"auto"
+        height:"auto",
+        minHeight:"100vh"
     }
 }))
 
@@ -32,6 +33,7 @@ export const Overlay = styled('div')(({ theme }) => ({
     [theme.breakpoints.down("md")]:{
         flexDirection: 'column',
         height:"auto",
+        minHeight:"100vh"
     }
 
 }))

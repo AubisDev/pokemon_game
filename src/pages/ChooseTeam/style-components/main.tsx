@@ -16,6 +16,7 @@ export const MainSectionContainer = styled('div')(({ theme }) =>({
 
     [theme.breakpoints.down("md")]:{
         height:"auto",
+        minHeight:"100vh",
         overflow:'auto', 
         flexDirection:'column', 
         overflowX:'hidden', 
@@ -29,12 +30,17 @@ export const GridContainer = styled(Grid)(({ theme }) =>({
     height:"80%",
     alignitems:"center",
     margin:"auto",
-
+    overflow:'hidden',
 
     [theme.breakpoints.down("md")]:{
         gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
         height:"auto",
-    }
+    },
+
+    [theme.breakpoints.down("sm")]:{
+        gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+        height:"auto",
+    },
 }))
 
 export const FindPokemonSectionContainer = styled('div')(({ theme }) =>({
@@ -43,7 +49,9 @@ export const FindPokemonSectionContainer = styled('div')(({ theme }) =>({
     width:'75%',  
 
     [theme.breakpoints.down("md")]:{
-        width:"100%"
+        width:"100%",
+        minHeight:"50vh",
+    
     }
 }))
 
@@ -276,8 +284,8 @@ export const Pulse =  styled('div')(({ theme }) => ({
     },
 
     [theme.breakpoints.down("md")]:{
-        width: '75px',
-        height: '75px',
+        width: '100px',
+        height: '100px',
     },
 }))
 
