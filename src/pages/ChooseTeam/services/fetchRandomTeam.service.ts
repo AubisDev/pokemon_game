@@ -1,6 +1,3 @@
-import { PokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
-import { Pokemon } from '../../../models/pokemon.model';
-
 const apiURL = 'https://pokeapi.co/api/v2/pokemon/';
 const idArrays = generateRandomIdArray();
 
@@ -10,7 +7,7 @@ function generateRandomIdArray (){
 
 }
 
-export const fetchBotTeamService = async () => {
+export const fetchRandomTeamService = async () => {
     try {
         return await Promise.all([
             fetch(`${apiURL}${idArrays[1]}`),
@@ -30,7 +27,4 @@ export const fetchBotTeamService = async () => {
     } catch (error) {
         console.log(error);
     }
-
-
-   
 }

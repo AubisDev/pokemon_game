@@ -87,6 +87,7 @@ export const TeamCardsTitle = styled('div')(({ theme }) =>({
     flexDirection: 'row',
     position:"absolute",
     top:"5%",
+    marginTop: '-0.8em',
 
     [theme.breakpoints.down("md")]:{
         position: 'relative',

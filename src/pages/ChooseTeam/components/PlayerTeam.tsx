@@ -1,5 +1,5 @@
 
-import { Box, Button, Grid, CircularProgress, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppStore } from '../../../redux/store';
 import { TeamCardsContainer, TeamCardsTitle, GridContainer } from "../style-components";
@@ -8,17 +8,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { useLocation, useNavigate } from 'react-router';
 import { checkUserTeam } from '../utilities/userTeamChecker';
 import useSnackbar from '../../../hooks/useSnackbar';
-import { fetchBotTeamService } from '../services/fetchForBotTeam';
-import { setBotTeam } from '../../../redux/state/teams';
-import { setStartersPokemons } from '../../../redux/state/game';
-import { BotPokemonDataAdapter } from '../../../adapters/PokemonData.adapter';
-import { Pokemon } from '../../../models';
-import { useState } from 'react';
 
+interface IPlayerTeam {
+  setOpenDifficultyMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-
-
-const PlayerTeam = () => {
+const PlayerTeam = ({setOpenDifficultyMenu}:IPlayerTeam) => {
     const dispatch = useDispatch();
     const {errorSB, throwErrorSnackbar, ErrorSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -26,28 +21,11 @@ const PlayerTeam = () => {
     const { username } = useSelector( (store:AppStore) => store.user );
     const { userTeam } = useSelector( (store:AppStore) => store.teams );
     const isInBattleMode = location.pathname.includes("/battle");
-    const [loading, setLoading] = useState<boolean>(false);
 
-    const handleClick = async () => {
+    const handleReadyClick = async () => {
       let isTeamComplete = checkUserTeam(userTeam);
-      if( isTeamComplete ) {
-        setLoading(true);
-        let botTeam:any = await fetchBotTeamService();
-        let adaptedBotTeamData = botTeam.map( (pokemon:Pokemon) => BotPokemonDataAdapter(pokemon));
-        dispatch( setBotTeam(adaptedBotTeamData));
-        dispatch( setStartersPokemons({
-          pause: false,
-          userPokemon: userTeam[0],
-          botPokemon: adaptedBotTeamData[0]
-        }))
-        setTimeout(() => {
-          setLoading(false);
-          navigate('/battle', {replace:true})
-        }, 3000);
-      }
-      else {
-        throwErrorSnackbar();
-      }
+      if( isTeamComplete ) setOpenDifficultyMenu(true);
+      else  throwErrorSnackbar();
     }
 
     return (
@@ -64,22 +42,15 @@ const PlayerTeam = () => {
             variant='contained' 
             color="warning" 
             sx={{ paddingY:1, fontFamily:'fantasy'}} 
-            onClick={handleClick}
+            onClick={handleReadyClick}
           
           > Ready to battle </Button>
         }
 
         {
-          errorSB ? ErrorSnackbar("Team is not complete, must select 6 pokemons") : null
+          errorSB ? ErrorSnackbar("Team is not complete, must select 6 pokemons",errorSB) : null
         }
-        {
-          loading ? (
-            <Box height="150px" width="275px" color='white' border='2px solid orange' display='flex' alignItems='center' justifyContent='center' flexDirection='column'  className='center_abs_item' sx={{ background: 'rgba(0,0,0,0.85)', borderRadius:"20px"}} >
-              <Typography textAlign='center' py={2} > PREPARING ENEMY TEAM... </Typography>
-              <CircularProgress />
-            </Box>
-          ) : null
-        }
+        
       </TeamCardsContainer>
     )
 }
