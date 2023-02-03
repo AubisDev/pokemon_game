@@ -11,6 +11,7 @@ export const Container = styled('div')(({ theme }) =>({
     backgroundRepeat: 'no-repeat',
     position: 'relative',
     overflowX:"hidden",
+  
 
     [theme.breakpoints.down("md")]:{
         height:"auto"
@@ -26,6 +27,7 @@ export const Overlay = styled('div')(({ theme }) => ({
     display:"flex",
     justifyContent:"center",
     alignItems:"center",
+    
 
     [theme.breakpoints.down("md")]:{
         flexDirection: 'column',
@@ -67,14 +69,19 @@ export const MainContainer = styled('div')(({ theme }) =>({
     fontFamily: "'Yrsa', serif",
     overflow: 'hidden',
     position: 'relative',
-    //boxShadow: 'inset 5px 5px 20px rgba(255,255,255,0.1)',
     webkitAnimation: 'shimmy 6s ease-in-out infinite',
 
     [theme.breakpoints.down("md")]:{
         margin:'1.5em 0',
+        width:"50%",
+        height:"80vh",
+    },
+
+    [theme.breakpoints.down("sm")]:{
+        margin:'1.5em 0',
         width:"90%",
         height:"90vh",
-    }
+    },
 }))
 
 export const PokemonLogo = styled('img')(({ theme }) =>({
@@ -126,7 +133,7 @@ export const QuestionSection = styled("ul")(({ theme }) =>({
     [theme.breakpoints.down("md")]:{
         width:"90%",
         paddingBottom:"1.5em",
-    }
+    },
 }))
 
 export const Question = styled('li')({
