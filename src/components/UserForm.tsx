@@ -7,12 +7,13 @@ import { PrivateRoutes } from '../models/routes';
 import { setUsername } from '../redux/state/user';
 import { CommonButton } from "../pages/Home/style-components/home.styles-components"
 import { useState } from 'react';
+import { usernameError } from '../utilities/constants';
 
 const UserForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorSB, throwErrorSnackbar } = useSnackbar();
+  const { errorSB, throwErrorSnackbar, ErrorSnackbar } = useSnackbar();
   const [userName, setUserName] = useState<string>('Pokemon Master');
 
   const handleSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
@@ -26,9 +27,7 @@ const UserForm = () => {
     }
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setUserName(event.currentTarget.value)
-  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setUserName(event.currentTarget.value);
 
   return (
     <form style={{ display:"flex", flexDirection:"column"}}>
@@ -41,11 +40,7 @@ const UserForm = () => {
           value={userName}
           onChange={ (e) => handleChange(e)}
         />
-        <Snackbar open={errorSB} autoHideDuration={6000} anchorOrigin={{ vertical:'bottom', horizontal:'center' }}>
-          <Alert  severity="error" sx={{ width: '100%'}}>
-            There was an error
-          </Alert>
-        </Snackbar>
+        { errorSB ? ErrorSnackbar(usernameError, errorSB) : null}
         <CommonButton type="submit" onClick={ (e) => handleSubmit(e)} > Let's choose my team </CommonButton>
     </form>
   )

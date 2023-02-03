@@ -18,9 +18,9 @@ const useSnackbar = () => {
         }, 5000);
     }
 
-    const ErrorSnackbar = (message: string) => {
+    const ErrorSnackbar = (message: string, open:boolean) => {
       return(
-        <Snackbar open={errorSB} autoHideDuration={6000} anchorOrigin={{ vertical:'bottom', horizontal:'left' }}>
+        <Snackbar open={open} autoHideDuration={6000} anchorOrigin={{ vertical:'bottom', horizontal:'left' }}>
           <Alert  severity="error" sx={{ width: '100%'}}>
             {message}
           </Alert>

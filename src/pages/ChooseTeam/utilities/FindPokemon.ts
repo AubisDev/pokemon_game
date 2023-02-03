@@ -10,6 +10,7 @@ export const fetchPokemonData = async(pokemon: string) => {
 
     } catch (error) {
         console.log(error);
+        return 'Not found'
     }
 
 }
