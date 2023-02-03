@@ -53,11 +53,18 @@ export const teamsSlice:Slice = createSlice({
                 ...state,
                 userTeam: action.payload
             }
+        },
+
+        resetUserTeam: (state) => {
+            return {
+                userTeam: userTeamInitialState,
+                enemyTeam: botTeamInitialState
+            }
         }
     }
 })
 
 
-export const { addPokemon, removePokemon, setBotTeam, updateUserTeamStats} = teamsSlice.actions;
+export const { addPokemon, removePokemon, setBotTeam, updateUserTeamStats, resetUserTeam} = teamsSlice.actions;
 
 export default teamsSlice.reducer;

@@ -5,9 +5,11 @@ import Typography from "@mui/material/Typography";
 import UserPokemon from "./components/UserPokemon";
 import BotPokemon from "./components/BotPokemon";
 import useGame from "./hooks/useGame";
+import BattleEnd from "./components/BattleEnd";
+import { defeatMessage, winMessage } from "./utilities/constants";
 
 const Battle = () => {
-  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction, pauseRef, handleUserPokemonChange, throwUserPokeball, throwBotPokeball } = useGame();
+  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction, pauseRef, winner, throwUserPokeball, throwBotPokeball } = useGame();
 
   return (
     <SectionContainer>
@@ -36,6 +38,13 @@ const Battle = () => {
         </ActionsSection>
       </Stack>
       <PlayerTeam />
+      {
+        winner.length !== 0 ?  winner === 'user' 
+          ? <BattleEnd message={winMessage} />
+          : <BattleEnd message={defeatMessage} />
+        : null
+      }
+      
     </SectionContainer>
   )
 }

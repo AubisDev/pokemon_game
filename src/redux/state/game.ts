@@ -75,11 +75,13 @@ export const gameSlice:Slice = createSlice({
                 ...state,
                 pause: false
             }
-        }
+        },
+
+        resetBattelData:  (state) => gameInitialState 
     } 
 })
 
 
-export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, setMessage, setPause, removePause } = gameSlice.actions;
+export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, setMessage, setPause, removePause, resetBattelData } = gameSlice.actions;
 
 export default gameSlice.reducer;

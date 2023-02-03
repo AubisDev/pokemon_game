@@ -19,6 +19,7 @@ const useGame = () => {
     const [ botAttackMove, setBotAttackMove] = useState(false);
     const [ throwUserPokeball, setThrowUserPokeball] = useState(false);
     const [ throwBotPokeball, setThrowBotPokeball] = useState(false);
+    const [ winner, setWinner] = useState('');
   
     const handleUserAction = async(action:string) => {
       pauseRef.current = true;
@@ -82,12 +83,13 @@ const useGame = () => {
             messageOne: firstLine,
             messageTwo: secondLine
         }))
-        await delay(1000);
         pauseRef.current = false;
     }
-  
+    
+
     useEffect(() => {
-        throwUserPokeballAnimation()
+        throwBotPokeballAnimation();
+        throwUserPokeballAnimation();
         newTurnMessage(userPokemon);
     }, [])
     
@@ -170,16 +172,21 @@ const useGame = () => {
         }));
         await delay(1500);
         const nextPokemon = enemyTeam[ botRef.current + 1];
-        throwBotPokeballAnimation();
-        await delay(1500);
-        dispatch( replaceBotPokemon(nextPokemon));
-        dispatch( setMessage({
-            messageOne: `Bot enemy sends:`,
-            messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
-        }));
-        await delay(2000);
-        botRef.current = botRef.current+1;
-        await newTurnMessage(userPokemon);
+        if( nextPokemon ){            
+            throwBotPokeballAnimation();
+            await delay(1500);
+            dispatch( replaceBotPokemon(nextPokemon));
+            dispatch( setMessage({
+                messageOne: `Bot enemy sends:`,
+                messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
+            }));
+            await delay(2000);
+            botRef.current = botRef.current+1;
+            await newTurnMessage(userPokemon);
+        }
+        else{
+            setWinner('user')
+        }
     }
   
     const handleUserPokemonChange = async (pokemon?: Pokemon) => {
@@ -199,17 +206,22 @@ const useGame = () => {
         }));
         await delay(1500);
         const nextPokemon = userTeam[ userRef.current + 1];
-        dispatch( replaceCurrentPokemon(nextPokemon));
-        throwUserPokeballAnimation();
-        await delay(1500);
-        dispatch( setMessage({
-            messageOne: `${username} sends:`,
-            messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
-        }));
-        await delay(2000);
-        userRef.current = userRef.current + 1;
-        await newTurnMessage(nextPokemon);
-      
+        if( nextPokemon){
+            dispatch( replaceCurrentPokemon(nextPokemon));
+            throwUserPokeballAnimation();
+            await delay(1500);
+            dispatch( setMessage({
+                messageOne: `${username} sends:`,
+                messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
+            }));
+            await delay(2000);
+            userRef.current = userRef.current + 1;
+            await newTurnMessage(nextPokemon);
+        }
+        else{
+            setWinner('bot')
+        }
+        
     }
     
     const updateUserTeam = (updatedPokemonStats:Pokemon) => {
@@ -231,7 +243,8 @@ const useGame = () => {
     pauseRef,
     handleUserPokemonChange,
     throwUserPokeball,
-    throwBotPokeball
+    throwBotPokeball,
+    winner
   }
 }
 export default useGame

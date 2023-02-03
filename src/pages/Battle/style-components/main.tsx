@@ -10,6 +10,7 @@ export const SectionContainer = styled("div")(({theme}) => ({
     display:"flex",
     flexDirection:"row",
     background: 'rgba(0,0,0,0.9)',
+    position:"relative"
 }))
 
 export const BattleSectionContainer = styled("div")(({theme}) => ({ 

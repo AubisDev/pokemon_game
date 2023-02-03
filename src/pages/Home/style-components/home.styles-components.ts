@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 import home_bg from '../../../assets/home-bg-2.webp';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
 export const Container = styled('div')(({ theme }) =>({
@@ -121,9 +121,11 @@ export const QuestionSection = styled("ul")(({ theme }) =>({
     height: '275px',
     width: "400px",
     borderRadius: '10px',
-
+    paddingBottom:0,
+    
     [theme.breakpoints.down("md")]:{
-        width:"90%"
+        width:"90%",
+        paddingBottom:"1.5em",
     }
 }))
 
@@ -135,7 +137,7 @@ export const Question = styled('li')({
     fontWeight: 700
 })
 
-export const Answer = styled('span')(({ theme }) =>({
+export const Answer = styled(Box)(({ theme }) =>({
     width: '70%',
     wordBreak: 'break-word',
     fontSize: '17px',
