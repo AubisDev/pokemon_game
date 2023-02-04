@@ -52,9 +52,9 @@ const UserPokemon = ({attackMove, throwUserPokeball}: IUserPokemonProps) => {
             : <UserPokemonImage src={userPokemon.imageBack} alt={userPokemon.name} />
         }
         <UserLifeBar>
-            <Typography textAlign='left' fontSize="24px" letterSpacing={2} px={4} py={1} textTransform='capitalize'>{userPokemon.name}</Typography>
-            <LinearProgress variant='determinate' color={healthBarColors } value={normalizedHealth}  sx={{ width:'80%', height:'20px', borderRadius:'10px',marginLeft:"50px", border:"4px solid rgba(0,0,0,0.30)", boxShadow:'2px 4px 2px rgba(0,0,0,0.1)' }} />
-            <Typography fontSize="20px" position='absolute' bottom={12} right='15%'>{userPokemon.currentHealth}/{userPokemon.health}</Typography>
+            <Typography textAlign='left' fontSize={{xs:'16px',sm:"24px"}} letterSpacing={{xs:1, sm:2}} px={{xs:3,sm:3}} py={{xs:0.5,sm:1}} textTransform='capitalize'>{userPokemon.name}</Typography>
+            <LinearProgress variant='determinate' color={healthBarColors } value={normalizedHealth}  sx={{ width:{xs:'70%',sm:'80%'}, height:{xs:"9px",sm:'20px'}, borderRadius:'10px',marginLeft:{xs:'25px',sm:"50px"}, border:"4px solid rgba(0,0,0,0.30)", boxShadow:'2px 4px 2px rgba(0,0,0,0.1)' }} />
+            <Typography fontSize={{xs:'12px',sm:"20px"}} position='absolute' bottom={{xs:0,sm:12}} right='15%'>{userPokemon.currentHealth}/{userPokemon.health}</Typography>
         </UserLifeBar>
 
 

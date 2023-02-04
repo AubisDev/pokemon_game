@@ -10,7 +10,7 @@ import { checkUserTeam } from '../utilities/userTeamChecker';
 import useSnackbar from '../../../hooks/useSnackbar';
 
 interface IPlayerTeam {
-  setOpenDifficultyMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenDifficultyMenu?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PlayerTeam = ({setOpenDifficultyMenu}:IPlayerTeam) => {
@@ -24,7 +24,9 @@ const PlayerTeam = ({setOpenDifficultyMenu}:IPlayerTeam) => {
 
     const handleReadyClick = async () => {
       let isTeamComplete = checkUserTeam(userTeam);
-      if( isTeamComplete ) setOpenDifficultyMenu(true);
+      if( setOpenDifficultyMenu !== undefined){
+        if( isTeamComplete ) setOpenDifficultyMenu(true);
+      }
       else  throwErrorSnackbar();
     }
 

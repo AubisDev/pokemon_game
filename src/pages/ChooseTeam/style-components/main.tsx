@@ -13,6 +13,7 @@ export const MainSectionContainer = styled('div')(({ theme }) =>({
     width:'100vw',  
     overflow:'hidden',
     background:'rgba(0,0,0,0.90)', 
+    overflowX:"hidden",
 
     [theme.breakpoints.down("md")]:{
         height:"auto",
@@ -31,6 +32,7 @@ export const GridContainer = styled(Grid)(({ theme }) =>({
     alignitems:"center",
     margin:"auto",
     overflow:'hidden',
+    
 
     [theme.breakpoints.down("md")]:{
         gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
@@ -47,6 +49,7 @@ export const FindPokemonSectionContainer = styled('div')(({ theme }) =>({
     display:'flex', 
     flexDirection:'column', 
     width:'75%',  
+    overflowX:"hidden",
 
     [theme.breakpoints.down("md")]:{
         width:"100%",
@@ -62,6 +65,7 @@ export const TeamSelectionContainer = styled('div')(({ theme }) =>({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     position: 'relative',
+    
 
     [theme.breakpoints.down("md")]:{
         height:"auto"
@@ -78,6 +82,7 @@ export const TeamCardsContainer  = styled('div')(({ theme }) =>({
     alignItems:"center",
     borderLeft:'1px solid rgba(113,115,115,0.25)',
     position:"relative",
+    
 
     [theme.breakpoints.down("md")]:{
         width: '100%',

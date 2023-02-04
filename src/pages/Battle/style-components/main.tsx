@@ -10,16 +10,29 @@ export const SectionContainer = styled("div")(({theme}) => ({
     display:"flex",
     flexDirection:"row",
     background: 'rgba(0,0,0,0.9)',
-    position:"relative"
+    position:"relative",
+    overflowX:"hidden",
+    
+    [theme.breakpoints.down("md")]:{
+        height:'auto',
+        minHeight:"100vh",
+        flexDirection:"column",
+    }
 }))
 
 export const BattleSectionContainer = styled("div")(({theme}) => ({ 
-    height:"80%",
+    height:"80vh",
     width:"100%",
     backgroundImage: `url(${battleBg})`,
     backgroundSize:"cover",
     position: 'relative',
+    backgroundPosition:"center",
+    overflow:"hidden",
 
+    [theme.breakpoints.down("md")]:{
+        width:"100vw",
+        height:'60vh',
+    }
     
 }))
 
@@ -28,7 +41,13 @@ export const ActionsSection = styled("div")(({theme}) => ({
     width:"100%",
     position:"relative",
     border:'1px solid darkorange',
-    background:"rgba(0,0,0,.6)"
+    background:"rgba(0,0,0,.6)",
+    overflowX:"hidden",
+    
+    [theme.breakpoints.down("md")]:{
+        width:"99.2vw",
+        height:'20vh',
+    }
 }))
 
 export const InnerContainerBorder = styled("div")(({theme}) => ({  
@@ -40,6 +59,14 @@ export const InnerContainerBorder = styled("div")(({theme}) => ({
     flexDirection:"row",
     alignItems:"center",
     justifyContent:"space-evenly",
+    overflowX:"hidden",
+
+    [theme.breakpoints.down("md")]:{
+        border:"2px solid darkorange",
+        width:"94%",
+        padding: 2
+    }
+
 }))
 
 export const PixelatedButton = styled("button")(({theme}) => ({ 
@@ -53,7 +80,19 @@ export const PixelatedButton = styled("button")(({theme}) => ({
     boxShadow:"0px 2px 5px rgba(0,0,0,1)",
     color:"white",
     cursor:"pointer",
-    letterSpacing:"3px"
+    letterSpacing:"3px",
+    overflowX:"hidden",
+
+    [theme.breakpoints.down("md")]:{
+        width:"125px",
+        height:'70px',
+        fontSize:"18px",
+        padding:"0 0.25em",
+        marginRight:"0.5em",
+        fontFamily:"sans-serif",
+        fontWeight:600,
+        textAlign:"center"
+    }
 }))
 
 
@@ -61,16 +100,32 @@ export const UserPokemonImage  = styled(motion.img)(({theme}) => ({
     width: '350px',
     height: '350px',
     position: 'absolute',
-    bottom:'-8%',
-    left: '20%'
+    bottom:'-5%',
+    left: '15%',
+    overflowX:"hidden",
+   
+    [theme.breakpoints.down("sm")]:{
+        width: '150px',
+        height: '150px',
+        bottom:0,
+        left: '10%',
+    }
 }))
 
 export const BotPokemonImage  = styled(motion.img)(({theme}) => ({ 
     width: '250x',
     height: '250px',
     position: 'absolute',
-    top:'15%',
-    right: '15%'
+    top:'10%',
+    right: '15%',
+    overflowX:"hidden",
+
+    [theme.breakpoints.down("sm")]:{
+        width: '150px',
+        height: '150px',
+        top:'15%',
+        right: '5%',
+    }
 }))
 
 export const UserLifeBar = styled(Box)(({theme}) => ({ 
@@ -85,7 +140,15 @@ export const UserLifeBar = styled(Box)(({theme}) => ({
     border: '4px groove rgba(0,0,0,.75)',
     display:"flex",
     alignItems:"start",
-    flexDirection:"column"
+    flexDirection:"column",
+    overflowX:"hidden",
+
+    [theme.breakpoints.down("sm")]:{
+        width: '150px',
+        height:"65px",
+        bottom:'8%',
+        right: '5%',
+    }
 }))
 
 export const BotLifeBar = styled(Box)(({theme}) => ({ 
@@ -100,6 +163,14 @@ export const BotLifeBar = styled(Box)(({theme}) => ({
     border: '4px groove rgba(0,0,0,.75)',
     display:"flex",
     alignItems:"start",
-    flexDirection:"column"
+    flexDirection:"column",
+    overflowX:"hidden",
+    
+    [theme.breakpoints.down("sm")]:{
+        width: '150px',
+        height:"65px",
+        top:'15%',
+        right: '5%',
+    }
 }))
 

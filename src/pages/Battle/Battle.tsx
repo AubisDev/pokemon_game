@@ -13,16 +13,16 @@ const Battle = () => {
 
   return (
     <SectionContainer>
-      <Stack width='75%' height='100%' direction="column">
-        <BattleSectionContainer>
+      <Stack width={{xs:'100%', sm:'75%'}} height='100%' direction="column"  mb={{xs:'3em',sm:0}} overflow='hidden'>
+        <BattleSectionContainer >
           <UserPokemon attackMove={attackMove} throwUserPokeball={throwUserPokeball}/>
           <BotPokemon botAttackMove={botAttackMove} throwBotPokeball={throwBotPokeball}/>
         </BattleSectionContainer>
         <ActionsSection>
           <InnerContainerBorder className="center_abs_item">
             <Stack direction="column" pl={5}>
-              <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>{messageOne} </Typography>
-              <Typography  fontSize="32px" fontFamily="cursive" color="white" mt={-1}>{messageTwo}</Typography>
+              <Typography  fontSize={{xs:"20px",sm:"32px"}}  fontFamily="cursive" color="white" mt={-1}>{messageOne} </Typography>
+              <Typography  fontSize={{xs:"20px",sm:"32px"}} fontFamily="cursive" color="white" mt={{xs:0,sm:-1}}>{messageTwo}</Typography>
             </Stack>
             {
               pauseRef.current ? null : 
