@@ -1,5 +1,6 @@
 import { createSlice, Slice } from "@reduxjs/toolkit";
 import { Pokemon } from '../../models/pokemon.model';
+import { initialAlivePokemonState } from "../../pages/ChooseTeam/utilities";
 
 
 
@@ -10,6 +11,7 @@ export interface IGame{
     pause: boolean;
     messageOne: string;
     messageTwo: string;
+    alivePokemons: Pokemon[];
 }
 
 
@@ -18,7 +20,9 @@ const gameInitialState: IGame= {
     botPokemon: {name:'', id: '0' , attack:0, defense:0, speed: 0, types:[], status:"dead", currentHealth:0, health:0, imageSpot:'',imageBack:'', imageFront:''},
     pause: false,
     messageOne: '',
-    messageTwo: ''
+    messageTwo: '',
+    alivePokemons: []
+
 }
 
 
@@ -77,11 +81,39 @@ export const gameSlice:Slice = createSlice({
             }
         },
 
-        resetBattelData:  (state) => gameInitialState 
+        resetBattelData:  (state) => gameInitialState,
+
+        setAlivePokemons: (state, action) => {
+            return{
+                ...state,
+                alivePokemons: action.payload
+            }
+        },
+        
+        emptyAlivePokemonList: (state) => {
+            return{
+                ...state,
+                alivePokemons: initialAlivePokemonState
+            }
+        },
+
     } 
 })
 
 
-export const { setStartersPokemons, setTurn, replaceCurrentPokemon,replaceBotPokemon, userAttack, botAttack, setMessage, setPause, removePause, resetBattelData } = gameSlice.actions;
+export const { 
+    setStartersPokemons, 
+    setTurn, 
+    replaceCurrentPokemon,
+    replaceBotPokemon, 
+    userAttack, 
+    botAttack, 
+    setMessage, 
+    setPause, 
+    removePause, 
+    resetBattelData,
+    setAlivePokemons,
+    emptyAlivePokemonList
+ } = gameSlice.actions;
 
 export default gameSlice.reducer;

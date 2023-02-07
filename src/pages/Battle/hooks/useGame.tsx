@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pokemon } from "../../../models";
-import { setMessage, userAttack, botAttack, replaceBotPokemon, replaceCurrentPokemon, setPause, removePause } from "../../../redux/state/game";
+import { setMessage, userAttack, botAttack, replaceBotPokemon, replaceCurrentPokemon, setPause, removePause, setAlivePokemons } from "../../../redux/state/game";
 import { updateUserTeamStats } from "../../../redux/state/teams";
 import { AppStore } from "../../../redux/store";
 import { checkWhoIsFirstAttack, userAttackAction, checkHealth, botAttackAction, delay } from "../utilities/gameLogic";
@@ -20,7 +20,8 @@ const useGame = () => {
     const [ throwUserPokeball, setThrowUserPokeball] = useState(false);
     const [ throwBotPokeball, setThrowBotPokeball] = useState(false);
     const [ winner, setWinner] = useState('');
-  
+
+    
     const handleUserAction = async(action:string) => {
       pauseRef.current = true;
       let botState = {...botPokemon};
@@ -37,10 +38,10 @@ const useGame = () => {
       else{
         dispatch( setMessage({
             messageOne:`Select pokemon`,
-            messageTwo: ''
+            messageTwo: 'You have 15 seconds to choose'
           }));
-        dispatch( setPause({}) )
-        await delay(1500);
+        showAvailableTeam();
+        await delay(15000);
         handleBotAttack(currUserPokemon, 'bot first');
       }
       //User
@@ -232,6 +233,12 @@ const useGame = () => {
             return pokemon;
         })
          
+    }
+
+    const showAvailableTeam = async () => {
+        const alivePokemons = [...userTeam].filter( pokemon => pokemon.health !== 0);
+        dispatch( setAlivePokemons (alivePokemons));
+        await delay(1000);
     }
 
   return {

@@ -27,3 +27,4 @@ export const charDataEmptyValues = (): ChartData[] => {
 }
 
 export const SearchErrorMessage: string = 'Pokemon not found, try again';
+export const initialAlivePokemonState = [];
