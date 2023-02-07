@@ -67,6 +67,7 @@ const PokemonInformation = () => {
      }
       dispatch( setBotTeam(adaptedBotTeamData));
       dispatch( setStartersPokemons({
+        alivePokemons: [],
         pause: false,
         userPokemon: userTeam[0],
         botPokemon: adaptedBotTeamData[0]
@@ -111,18 +112,18 @@ const PokemonInformation = () => {
         (
           <Box width='100%' height='100%' position='fixed' zIndex={200} sx={{background:"rgba(0,0,0,0.75)"}}>
             <Box height="225px" width="275px" color='white' border='2px solid orange' display='flex' alignItems='center' justifyContent='center' flexDirection='column'  className='center_abs_item' sx={{ background: 'rgba(0,0,0,0.85)', borderRadius:"20px"}} >
-            <Typography textAlign='center' py={2} fontSize={20}>
-              {loading ? 'Calling trainer' : 'Select your enemy'}
-            </Typography>
-            {
-              loading ? <CircularProgress />
-                      : <>
-                          <Button onClick={() => handleDifficulty('random')} variant='contained' color='success' sx={{ width:'120px'}}>Random</Button>
-                          <Button onClick={() => handleDifficulty('boss')} variant='contained' color='secondary' sx={{ my:1, width:'120px'}}>Boss</Button>
-                          <Button onClick={() => handleDifficulty('hard_boss')} variant='contained' color='error' sx={{ width:'120px'}}>Hard Boss</Button>
-                        </>
-            }
-          </Box>
+              <Typography textAlign='center' py={2} fontSize={20}>
+                {loading ? 'Calling trainer' : 'Select your enemy'}
+              </Typography>
+              {
+                loading ? <CircularProgress />
+                        : <>
+                            <Button onClick={() => handleDifficulty('random')} variant='contained' color='success' sx={{ width:'120px'}}>Random</Button>
+                            <Button onClick={() => handleDifficulty('boss')} variant='contained' color='secondary' sx={{ my:1, width:'120px'}}>Boss</Button>
+                            <Button onClick={() => handleDifficulty('hard_boss')} variant='contained' color='error' sx={{ width:'120px'}}>Hard Boss</Button>
+                          </>
+              }
+            </Box>
           </Box>
         ) : null
       }

@@ -7,9 +7,20 @@ import BotPokemon from "./components/BotPokemon";
 import useGame from "./hooks/useGame";
 import BattleEnd from "./components/BattleEnd";
 import { defeatMessage, winMessage } from "./utilities/constants";
+import AvailablePokemonList from "./components/AvailablePokemonList";
 
 const Battle = () => {
-  const { attackMove, botAttackMove, messageOne, messageTwo, handleUserAction, pauseRef, winner, throwUserPokeball, throwBotPokeball } = useGame();
+  const { 
+    attackMove, 
+    botAttackMove, 
+    messageOne, 
+    messageTwo, 
+    handleUserAction, 
+    pauseRef, winner,
+    throwUserPokeball, 
+    throwBotPokeball, 
+    handleUserSelection } = useGame();
+    
 
   return (
     <SectionContainer>
@@ -25,7 +36,7 @@ const Battle = () => {
               <Typography  fontSize={{xs:"20px",sm:"32px"}} fontFamily="cursive" color="white" mt={{xs:0,sm:-1}}>{messageTwo}</Typography>
             </Stack>
             {
-              pauseRef.current ? null : 
+              pauseRef.current ? <AvailablePokemonList handleUserSelection={handleUserSelection} /> :
               (
                 <>
                   <PixelatedButton disabled={pauseRef.current} onClick={ () => handleUserAction('attack') } className="fightBtn" style={{ background:"#7b151e"}}>{pauseRef.current ? 'Wait' : 'Fight'}</PixelatedButton>

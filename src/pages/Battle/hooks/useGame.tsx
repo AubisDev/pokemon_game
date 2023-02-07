@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pokemon } from "../../../models";
-import { setMessage, userAttack, botAttack, replaceBotPokemon, replaceCurrentPokemon, setPause, removePause, setAlivePokemons } from "../../../redux/state/game";
+import { setMessage, userAttack, botAttack, replaceBotPokemon, replaceCurrentPokemon, setPause, removePause, setAlivePokemons, emptyAlivePokemonList } from "../../../redux/state/game";
 import { updateUserTeamStats } from "../../../redux/state/teams";
 import { AppStore } from "../../../redux/store";
 import { checkWhoIsFirstAttack, userAttackAction, checkHealth, botAttackAction, delay } from "../utilities/gameLogic";
@@ -20,8 +20,8 @@ const useGame = () => {
     const [ throwUserPokeball, setThrowUserPokeball] = useState(false);
     const [ throwBotPokeball, setThrowBotPokeball] = useState(false);
     const [ winner, setWinner] = useState('');
+    const [selectedChangePokemon, setSelectedChangePokemon] = useState<Pokemon | null>( null);
 
-    
     const handleUserAction = async(action:string) => {
       pauseRef.current = true;
       let botState = {...botPokemon};
@@ -36,13 +36,7 @@ const useGame = () => {
         }
       }
       else{
-        dispatch( setMessage({
-            messageOne:`Select pokemon`,
-            messageTwo: 'You have 15 seconds to choose'
-          }));
-        showAvailableTeam();
-        await delay(15000);
-        handleBotAttack(currUserPokemon, 'bot first');
+        showPokemonSelectMenu();
       }
       //User
       //Todo sino, verifica que aun tenga pokemones vivos, en caso de, manda el proximo pokemon, sino la batalla termina
@@ -191,16 +185,6 @@ const useGame = () => {
     }
   
     const handleUserPokemonChange = async (pokemon?: Pokemon) => {
-    // if( pokemon ){
-    //     dispatch( replaceCurrentPokemon(pokemon));
-    //     dispatch( removePause({}) )
-    //     await delay(1000);
-    //            dispatch( setPause({}) )
-    //     userRef.current = userRef.current+1;
-    //     await newTurnMessage(pokemon);
-    // }
-    // else{
-       // const index = userTeam.findIndex( elem => elem.currentHealth > 0);
        dispatch( setMessage({
             messageOne: `${userPokemon.name.charAt(0).toUpperCase().concat(userPokemon.name.slice(1))} has fainted`,
             messageTwo: ''
@@ -236,10 +220,32 @@ const useGame = () => {
     }
 
     const showAvailableTeam = async () => {
-        const alivePokemons = [...userTeam].filter( pokemon => pokemon.health !== 0);
-        dispatch( setAlivePokemons (alivePokemons));
+        const alivePokemons = [...userTeam].filter( pokemon => pokemon.currentHealth > 0);
+        dispatch( setAlivePokemons(alivePokemons));
         await delay(1000);
+
     }
+
+    const showPokemonSelectMenu = async () => {
+        dispatch( setMessage({
+            messageOne:'Select pokemon',
+            messageTwo: ''
+        }));
+        showAvailableTeam();
+    }
+
+    const handleUserSelection = async(selectedPokemon:Pokemon) => {
+        throwUserPokeballAnimation();
+        dispatch( replaceCurrentPokemon(selectedPokemon));
+        dispatch( emptyAlivePokemonList({}));
+        dispatch( setMessage({
+            messageOne:`${username} sends ${selectedPokemon.name}`,
+            messageTwo: ''
+        }));
+        await delay(2000);
+        handleBotAttack(selectedPokemon, 'user first');
+    }
+
 
   return {
     attackMove,
@@ -251,7 +257,8 @@ const useGame = () => {
     handleUserPokemonChange,
     throwUserPokeball,
     throwBotPokeball,
-    winner
+    winner,
+    handleUserSelection,
   }
 }
 export default useGame

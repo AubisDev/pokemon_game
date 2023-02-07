@@ -174,3 +174,29 @@ export const BotLifeBar = styled(Box)(({theme}) => ({
     }
 }))
 
+
+export const AlivePokemonContainer = styled(Box)(({theme}) => ({ 
+    width:"100%", 
+    height:"90%", 
+    background:'rgba(54,175,246,0.6)', 
+    border:"1px solid white", 
+    borderRadius:"10px", 
+    display:'flex', 
+    flexDirection:"row", 
+    alignItems:"center",
+    margin:"auto",
+    transitionDuration:"0.3s",
+    cursor:"pointer",
+
+    "&:hover":{
+        background:"rgba(68,153,42,0.6)",
+
+    }
+//     [theme.breakpoints.down("sm")]:{
+//         width: '150px',
+//         height:"65px",
+//         top:'15%',
+//         right: '5%',
+//     }
+}))
+
