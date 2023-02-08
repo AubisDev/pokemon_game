@@ -232,7 +232,7 @@ const useGame = () => {
             messageTwo: ''
         }));
         await delay(2000);
-        if( !userPokemonFainted ){
+        if( userPokemonFainted ){
             setUserPokemonFainted(false);
             await newTurnMessage(selectedPokemon);
         }else{
