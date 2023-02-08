@@ -4,6 +4,7 @@ import { UserLifeBar, UserPokemonImage } from '../style-components/main';
 import { motion } from 'framer-motion';
 import { LinearProgress, Typography,  } from '@mui/material';
 import pokeball from '../../../assets/pokeball.webp';
+import { useMediaQuery } from 'react-responsive';
 
 
 interface IUserPokemonProps{
@@ -16,7 +17,7 @@ const UserPokemon = ({attackMove, throwUserPokeball}: IUserPokemonProps) => {
     const normalise = (currValue:number) => Math.floor((100*(currValue/userPokemon.health)));
     const normalizedHealth = normalise(userPokemon.currentHealth);
     const healthBarColors = normalizedHealth > 50 ? 'success' : (normalizedHealth > 20 &&  normalizedHealth <= 50) ? 'warning' : 'error'
-
+    const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
     return (
     <>
         {
@@ -24,8 +25,8 @@ const UserPokemon = ({attackMove, throwUserPokeball}: IUserPokemonProps) => {
             (
                 <motion.img 
                 animate={{
-                    translateX:[0,150],
-                    translateY: [0,-175,-125],
+                    translateX: isMobile ? [-25,50] : [0,150],
+                    translateY: isMobile ? [0,-125,-75] : [0,-175,-125],
                     rotate:[0,360]
                 }}
                 transition={{ ease:'easeInOut', duration:1.5}}

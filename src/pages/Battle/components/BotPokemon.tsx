@@ -4,6 +4,7 @@ import {  BotLifeBar, BotPokemonImage } from '../style-components/main';
 import { motion } from 'framer-motion';
 import { LinearProgress, Typography } from '@mui/material';
 import pokeball from '../../../assets/pokeball.webp';
+import { useMediaQuery } from 'react-responsive';
 interface IBotPokemonProps{
     botAttackMove: boolean;
     throwBotPokeball: boolean;
@@ -14,6 +15,7 @@ const BotPokemon = ({botAttackMove, throwBotPokeball}:IBotPokemonProps) => {
     const normalise = (currValue:number) => (100*(currValue/botPokemon.health));
     const normalizedHealth = normalise(botPokemon.currentHealth);
     const healthBarColors = normalizedHealth > 50 ? 'success' : (normalizedHealth > 20 &&  normalizedHealth <= 50) ? 'warning' : 'error'
+    const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
 
   return (
     <>
@@ -22,8 +24,8 @@ const BotPokemon = ({botAttackMove, throwBotPokeball}:IBotPokemonProps) => {
         (
             <motion.img 
             animate={{
-                translateX:[75,-75],
-                translateY: [0,-25,75],
+                translateX: isMobile ? [80,-25] : [75,-75],
+                translateY: isMobile ? [0,-35,60] : [0,-25,75],
                 rotate:[0,-360]
             }}
             transition={{ ease:'easeInOut', duration:1.5}}
