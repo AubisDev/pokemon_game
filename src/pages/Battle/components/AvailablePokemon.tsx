@@ -1,6 +1,6 @@
 import { Button, Grid, Typography, Box } from '@mui/material';
 import { Pokemon } from "../../../models"
-import { AlivePokemonContainer } from '../style-components';
+import { AlivePokemonContainer, AvailablePokemonImage } from '../style-components';
 import { delay } from '../utilities/gameLogic';
 
 interface IAvailablePokemon {
@@ -18,10 +18,10 @@ const AvailablePokemon = ({pokemon, handleUserSelection}:IAvailablePokemon ) => 
  
 
     return (
-        <Grid item xs={6} height='90%' width='150px'>
+        <Grid item xs={6} height='90%' width={{xs:'175px', md:'150px'}}>
         <AlivePokemonContainer onClick={ () => handlePokemonChange(pokemon)} zIndex={200}>
-            <img src={pokemon.imageSpot} alt={pokemon.name} style={{ width:"40px", height:"100%"}}/>
-            <Typography fontSize={14} textTransform="capitalize" pl={1}>{pokemon.name}</Typography>
+            <AvailablePokemonImage src={pokemon.imageSpot} alt={pokemon.name} />
+            <Typography fontSize={{xs:12,sm:14}} textTransform="capitalize" pl={{xs:0,sm:1}}>{pokemon.name}</Typography>
         </AlivePokemonContainer>
         </Grid>
     )

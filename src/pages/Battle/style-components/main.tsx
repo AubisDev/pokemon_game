@@ -105,8 +105,8 @@ export const UserPokemonImage  = styled(motion.img)(({theme}) => ({
     overflowX:"hidden",
    
     [theme.breakpoints.down("sm")]:{
-        width: '150px',
-        height: '150px',
+        width: '175px',
+        height: '175px',
         bottom:0,
         left: '10%',
     }
@@ -116,14 +116,14 @@ export const BotPokemonImage  = styled(motion.img)(({theme}) => ({
     width: '250x',
     height: '250px',
     position: 'absolute',
-    top:'10%',
+    top:'15%',
     right: '15%',
     overflowX:"hidden",
 
     [theme.breakpoints.down("sm")]:{
-        width: '150px',
-        height: '150px',
-        top:'15%',
+        width: '125px',
+        height: '125px',
+        top:'22.5%',
         right: '5%',
     }
 }))
@@ -191,12 +191,15 @@ export const AlivePokemonContainer = styled(Box)(({theme}) => ({
     "&:hover":{
         background:"rgba(68,153,42,0.6)",
 
+    },
+
+    [theme.breakpoints.down("sm")]:{
+        
     }
-//     [theme.breakpoints.down("sm")]:{
-//         width: '150px',
-//         height:"65px",
-//         top:'15%',
-//         right: '5%',
-//     }
+}))
+
+export const AvailablePokemonImage = styled('img')(({theme}) => ({ 
+    width:"40px", 
+    height:"100%",
 }))
 
