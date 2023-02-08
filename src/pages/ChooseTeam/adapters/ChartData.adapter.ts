@@ -1,4 +1,3 @@
-import { Stats } from "../../../models/pokemon.model";
 
 export interface ChartData {
     statName: string;

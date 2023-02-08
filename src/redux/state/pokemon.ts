@@ -1,5 +1,4 @@
 import { createSlice, Slice } from "@reduxjs/toolkit";
-import { User } from "../../models/user.model";
 import { PayloadAction } from '@reduxjs/toolkit';
 import { Pokemon } from '../../models/pokemon.model';
 

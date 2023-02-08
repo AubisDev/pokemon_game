@@ -1,5 +1,4 @@
 import { createSlice, Slice } from "@reduxjs/toolkit";
-import { PayloadAction } from '@reduxjs/toolkit';
 import { Pokemon } from "../../models";
 import { Teams } from '../../models/teams.model';
 import { botTeamInitialState, userTeamInitialState } from '../../utilities/constants';
