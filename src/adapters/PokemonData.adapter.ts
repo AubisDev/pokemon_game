@@ -30,5 +30,7 @@ export const BotPokemonDataAdapter = ( pokemon: any ):Pokemon => {
             speed: pokemon.stats[5].base_stat,
             types: pokemon.types.map( (pokeType:any) => pokeType.type.name ),
             status: 'alive',
+            imageFront: '',
+            imageBack:''
     }
 }
