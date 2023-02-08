@@ -20,7 +20,7 @@ const useGame = () => {
     const [ throwUserPokeball, setThrowUserPokeball] = useState(false);
     const [ throwBotPokeball, setThrowBotPokeball] = useState(false);
     const [ winner, setWinner] = useState('');
-    const [selectedChangePokemon, setSelectedChangePokemon] = useState<Pokemon | null>( null);
+    const [userPokemonFainted, setUserPokemonFainted] = useState(false);
 
     const handleUserAction = async(action:string) => {
       pauseRef.current = true;
@@ -138,9 +138,11 @@ const useGame = () => {
             const updatedTeam = updateUserTeam(updatedState);
             dispatch( updateUserTeamStats( updatedTeam ))
             await delay(1000);
-            const isUserAlive = checkHealth(updatedState);
-            if( !isUserAlive ) await handleUserPokemonChange();
-            await newTurnMessage(userPokemon);
+            const isUserPokemonAlive = checkHealth(updatedState);
+            if( !isUserPokemonAlive ) await handleUserPokemonChange();
+            else {
+                await newTurnMessage(userPokemon);
+            }
           
         }
         else{
@@ -152,8 +154,8 @@ const useGame = () => {
             const updatedTeam = updateUserTeam(updatedState);
             dispatch( updateUserTeamStats( updatedTeam ))
             await delay(1000);
-            const isUserAlive = checkHealth(updatedState);
-            if( isUserAlive ) await handleUserAttack({...botPokemon}, turn);
+            const isUserPokemonAlive = checkHealth(updatedState);
+            if( isUserPokemonAlive ) await handleUserAttack({...botPokemon}, turn);
             else await handleUserPokemonChange();
           
         }
@@ -189,24 +191,9 @@ const useGame = () => {
             messageOne: `${userPokemon.name.charAt(0).toUpperCase().concat(userPokemon.name.slice(1))} has fainted`,
             messageTwo: ''
         }));
+        setUserPokemonFainted(true);
         await delay(1500);
-        const nextPokemon = userTeam[ userRef.current + 1];
-        if( nextPokemon){
-            dispatch( replaceCurrentPokemon(nextPokemon));
-            throwUserPokeballAnimation();
-            await delay(1500);
-            dispatch( setMessage({
-                messageOne: `${username} sends:`,
-                messageTwo: `${nextPokemon.name.charAt(0).toUpperCase().concat(nextPokemon.name.slice(1))}`
-            }));
-            await delay(2000);
-            userRef.current = userRef.current + 1;
-            await newTurnMessage(nextPokemon);
-        }
-        else{
-            setWinner('bot')
-        }
-        
+        showAvailableTeam();
     }
     
     const updateUserTeam = (updatedPokemonStats:Pokemon) => {
@@ -220,7 +207,8 @@ const useGame = () => {
     }
 
     const showAvailableTeam = async () => {
-        const alivePokemons = [...userTeam].filter( pokemon => pokemon.currentHealth > 0);
+        const alivePokemons = [...userTeam].filter( pokemon => pokemon.currentHealth > 0 && pokemon.name !== userPokemon.name);
+        if( alivePokemons.length === 0 ) setWinner('bot wins')
         dispatch( setAlivePokemons(alivePokemons));
         await delay(1000);
 
@@ -232,6 +220,7 @@ const useGame = () => {
             messageTwo: ''
         }));
         showAvailableTeam();
+        await delay(1000);
     }
 
     const handleUserSelection = async(selectedPokemon:Pokemon) => {
@@ -243,7 +232,13 @@ const useGame = () => {
             messageTwo: ''
         }));
         await delay(2000);
-        handleBotAttack(selectedPokemon, 'user first');
+        if( !userPokemonFainted ){
+            setUserPokemonFainted(false);
+            await newTurnMessage(selectedPokemon);
+        }else{
+            handleBotAttack(selectedPokemon, 'user first');
+        }
+        
     }
 
 
