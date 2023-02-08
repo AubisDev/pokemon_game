@@ -63,7 +63,7 @@ export const colorTypesList = (type: string):TypeData => {
         
         case 'normal':
             return { 
-                bgColor: 'rgb(172,169,116)', 
+                bgColor: 'rgb(230, 223, 115)', 
                 bgGradient:'linear-gradient(125deg, rgba(172,169,116,1) 0%, rgba(204,201,170,1) 33%, rgba(234,234,222,1) 66%, rgba(239,254,231,1) 100%)',
                 weak: ['rock', 'ghost', 'steel'],
                 resistent: [],
