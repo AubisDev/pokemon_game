@@ -32,8 +32,8 @@ const Battle = () => {
         <ActionsSection>
           <InnerContainerBorder className="center_abs_item">
             <Stack direction="column" pl={{xs:3,sm:5}}>
-              <Typography  fontSize={{xs:"20px",sm:"32px"}}  fontFamily="cursive" color="white" mt={-1}>{messageOne} </Typography>
-              <Typography  fontSize={{xs:"20px",sm:"32px"}} fontFamily="cursive" color="white" mt={{xs:0,sm:-1}}>{messageTwo}</Typography>
+              <Typography  fontSize={{xs:"20px",sm:"32px"}}  color="white" mt={-1}>{messageOne} </Typography>
+              <Typography  fontSize={{xs:"20px",sm:"32px"}}  color="white" mt={{xs:0,sm:-1}}>{messageTwo}</Typography>
             </Stack>
             {
               pauseRef.current ? <AvailablePokemonList handleUserSelection={handleUserSelection} /> :
