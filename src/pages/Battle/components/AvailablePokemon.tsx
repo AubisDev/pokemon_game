@@ -18,7 +18,7 @@ const AvailablePokemon = ({pokemon, handleUserSelection}:IAvailablePokemon ) => 
  
 
     return (
-        <Grid item xs={6} height='90%' width={{xs:'175px', md:'150px'}}>
+        <Grid item xs={6} height='90%' width={{xs:'175px', md:'215px'}}>
         <AlivePokemonContainer onClick={ () => handlePokemonChange(pokemon)} zIndex={200}>
             <AvailablePokemonImage src={pokemon.imageSpot} alt={pokemon.name} />
             <Typography fontSize={{xs:12,sm:14}} textTransform="capitalize" pl={{xs:0,sm:1}}>{pokemon.name}</Typography>

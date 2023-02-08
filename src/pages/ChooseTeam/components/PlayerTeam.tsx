@@ -26,8 +26,8 @@ const PlayerTeam = ({setOpenDifficultyMenu}:IPlayerTeam) => {
       let isTeamComplete = checkUserTeam(userTeam);
       if( setOpenDifficultyMenu !== undefined){
         if( isTeamComplete ) setOpenDifficultyMenu(true);
+        else throwErrorSnackbar();
       }
-      else  throwErrorSnackbar();
     }
 
     return (

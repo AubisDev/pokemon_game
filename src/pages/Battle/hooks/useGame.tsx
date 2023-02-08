@@ -103,6 +103,13 @@ const useGame = () => {
             userAttackAnimation();
             const newCopy = {...botState}
             let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
+            if( updatedState.currentHealth === botState.currentHealth){
+                dispatch( setMessage({
+                    messageOne: `${userPokemon.name} does not affects ${botState.name}`,
+                    messageTwo: ''
+                  }));
+            }
+            await delay(1250);
             dispatch( userAttack(updatedState) );
             await delay(1000);
             const isEnemyAlive = checkHealth(updatedState);
@@ -114,6 +121,13 @@ const useGame = () => {
             userAttackAnimation();
             const newCopy = {...botState}
             let updatedState = userAttackAction(newCopy, userPokemon, botPokemon );
+            if( updatedState.currentHealth === botState.currentHealth){
+                dispatch( setMessage({
+                    messageOne: `${userPokemon.name} does not affects ${botState.name}`,
+                    messageTwo: ''
+                  }));
+            }
+            await delay(1250);
             dispatch( userAttack(updatedState) );
             const isEnemyAlive = checkHealth(updatedState);
             if( !isEnemyAlive ) await handleBotPokemonChange();
