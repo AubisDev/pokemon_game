@@ -113,10 +113,18 @@ body {
   border-color:  white !important;
 }
 
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+
+}
+
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color:  white !important;
   border-width: 2px;
   color: white !important;
+}
+
+.css-1x5jdmq{
+  color: white !important
 }
 
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root{
