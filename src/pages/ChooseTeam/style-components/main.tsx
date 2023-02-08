@@ -13,7 +13,7 @@ export const MainSectionContainer = styled('div')(({ theme }) =>({
     width:'100vw',  
     overflow:'hidden',
     background:'rgba(0,0,0,0.90)', 
-    overflowX:"hidden",
+    overflow:"hidden",
 
     [theme.breakpoints.down("md")]:{
         height:"auto",
@@ -49,7 +49,7 @@ export const FindPokemonSectionContainer = styled('div')(({ theme }) =>({
     display:'flex', 
     flexDirection:'column', 
     width:'75%',  
-    overflowX:"hidden",
+    overflow:"hidden",
 
     [theme.breakpoints.down("md")]:{
         width:"100%",

@@ -28,8 +28,8 @@ const PokemonInformation = () => {
     const { name, id, imageFront, imageSpot, imageBack, health, attack, defense, speed, types, status, currentHealth } = useSelector( (store: AppStore) => store.search);
     const { userTeam } = useSelector( (store: AppStore) => store.teams);
     const typeInformation: TypeData = types ? colorTypesList(types[0]) : colorTypesList('none');
-    const chartData:ChartData[] = attack ? CharDataAdapter({attack, defense, health,speed}) : charDataEmptyValues();
-    const foundPokemon = attack ? true : false;
+    const chartData:ChartData[] = name.length >= 1 ? CharDataAdapter({attack, defense, health,speed}) : charDataEmptyValues();
+    const foundPokemon:boolean = name.length >= 1 ? true : false;
 
     const handleClick = () => {
       const newState = [...userTeam];
