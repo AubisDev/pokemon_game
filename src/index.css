@@ -97,7 +97,9 @@ body {
   
   
 }
-
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+  color: white !important;
+}
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input-focused {
   border-color: white !important;
   color: white !important;
@@ -120,6 +122,7 @@ body {
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root{
   color: purple !important;
 }
+
 
 
 .center_abs_item{
