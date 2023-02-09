@@ -1,6 +1,6 @@
-import { Pokemon } from './pokemon.model';
+import { Pokemon } from "./pokemon.model";
 
 export interface Teams {
-    userTeam: Pokemon[];
-    enemyTeam: Pokemon[]
+  userTeam: Pokemon[];
+  enemyTeam: Pokemon[];
 }

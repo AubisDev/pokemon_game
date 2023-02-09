@@ -1,1 +1,1 @@
-export * from './PokemonData.adapter';
+export * from "./PokemonData.adapter";

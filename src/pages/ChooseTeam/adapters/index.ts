@@ -1,1 +1,1 @@
-export * from './ChartData.adapter';
+export * from "./ChartData.adapter";

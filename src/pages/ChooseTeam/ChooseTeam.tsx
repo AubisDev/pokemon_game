@@ -1,15 +1,14 @@
-import { Overlay } from '../Home/style-components/home.styles-components';
-import { TeamSelectionContainer } from './style-components/main';
-import PokemonInformation from './components/PokemonInformation';
+import { Overlay } from "../Home/style-components";
+import { TeamSelectionContainer } from "./style-components";
+import { PokemonInformation } from "./components";
 
-
-const ChooseTeam = () => {
+function ChooseTeam() {
   return (
     <TeamSelectionContainer>
       <Overlay>
-        <PokemonInformation/> 
+        <PokemonInformation />
       </Overlay>
     </TeamSelectionContainer>
-  )
+  );
 }
-export default ChooseTeam
+export default ChooseTeam;

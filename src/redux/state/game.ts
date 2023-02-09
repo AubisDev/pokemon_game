@@ -1,119 +1,111 @@
 import { createSlice, Slice } from "@reduxjs/toolkit";
-import { Pokemon } from '../../models/pokemon.model';
+import { Pokemon } from "../../models";
 import { initialAlivePokemonState } from "../../pages/ChooseTeam/utilities";
+import { PokemonInitialState } from "../../utilities";
 
-
-
-
-export interface IGame{
-    userPokemon: Pokemon;
-    botPokemon: Pokemon;
-    pause: boolean;
-    messageOne: string;
-    messageTwo: string;
-    alivePokemons: Pokemon[];
+export interface IGame {
+  userPokemon: Pokemon;
+  botPokemon: Pokemon;
+  pause: boolean;
+  messageOne: string;
+  messageTwo: string;
+  alivePokemons: Pokemon[];
 }
 
+const gameInitialState: IGame = {
+  userPokemon: PokemonInitialState,
+  botPokemon: PokemonInitialState,
+  pause: false,
+  messageOne: "",
+  messageTwo: "",
+  alivePokemons: [],
+};
 
-const gameInitialState: IGame= {
-    userPokemon: {name:'', id: '0' , attack:0, defense:0, speed: 0, types:[], status:"dead", currentHealth:0, health:0, imageSpot:'',imageBack:'', imageFront:''},
-    botPokemon: {name:'', id: '0' , attack:0, defense:0, speed: 0, types:[], status:"dead", currentHealth:0, health:0, imageSpot:'',imageBack:'', imageFront:''},
-    pause: false,
-    messageOne: '',
-    messageTwo: '',
-    alivePokemons: []
+export const gameSlice: Slice = createSlice({
+  name: "game",
+  initialState: gameInitialState,
+  reducers: {
+    setStartersPokemons: (state, action) => action.payload,
 
-}
+    replaceCurrentPokemon: (state, action) => {
+      return {
+        ...state,
+        userPokemon: action.payload,
+      };
+    },
 
+    replaceBotPokemon: (state, action) => {
+      return {
+        ...state,
+        botPokemon: action.payload,
+      };
+    },
 
-export const gameSlice:Slice = createSlice({
-    name: 'game',
-    initialState: gameInitialState,
-    reducers: {
+    userAttack: (state, action) => {
+      return {
+        ...state,
+        botPokemon: action.payload,
+      };
+    },
+    botAttack: (state, action) => {
+      return {
+        ...state,
+        userPokemon: action.payload,
+      };
+    },
+    setMessage: (state, action) => {
+      return {
+        ...state,
+        messageOne: action.payload.messageOne,
+        messageTwo: action.payload.messageTwo,
+      };
+    },
 
-        setStartersPokemons: (state, action) => action.payload,
+    setPause: (state) => {
+      return {
+        ...state,
+        pause: false,
+      };
+    },
 
-        replaceCurrentPokemon: (state, action) => {
-            return{
-                ...state,
-                userPokemon: action.payload,
-            }
-        },
-        
-        replaceBotPokemon : (state, action) => {
-            return {
-                ...state,
-                botPokemon: action.payload,
-            }
-        },
+    removePause: (state) => {
+      return {
+        ...state,
+        pause: false,
+      };
+    },
 
-        userAttack: (state, action) => {
-            return{
-                ...state,
-                botPokemon: action.payload 
-            }
-        },
-        botAttack: (state, action) => {
-            return {
-                ...state,
-                userPokemon: action.payload
-            }
-        },
-        setMessage: (state, action) => {
-            return{
-                ...state,
-                messageOne: action.payload.messageOne,
-                messageTwo: action.payload.messageTwo
-            }
-        }, 
-        
-        setPause: (state) => {
-            return{
-                ...state,
-                pause: false
-            }
-        },
+    resetBattelData: (state) => gameInitialState,
 
-        removePause: (state) => {
-            return{
-                ...state,
-                pause: false
-            }
-        },
+    setAlivePokemons: (state, action) => {
+      return {
+        ...state,
+        alivePokemons: action.payload,
+      };
+    },
 
-        resetBattelData:  (state) => gameInitialState,
+    emptyAlivePokemonList: (state) => {
+      return {
+        ...state,
+        alivePokemons: initialAlivePokemonState,
+      };
+    },
+  },
+});
 
-        setAlivePokemons: (state, action) => {
-            return{
-                ...state,
-                alivePokemons: action.payload
-            }
-        },
-        
-        emptyAlivePokemonList: (state) => {
-            return{
-                ...state,
-                alivePokemons: initialAlivePokemonState
-            }
-        },
-
-    } 
-})
-
-
-export const { 
-    setStartersPokemons, 
-    setTurn, 
-    replaceCurrentPokemon,
-    replaceBotPokemon, 
-    userAttack, 
-    botAttack, 
-    setMessage, 
-    setPause, 
-    removePause, 
-    resetBattelData,
-    setAlivePokemons,
-    emptyAlivePokemonList
- } = gameSlice.actions;
+export const {
+  setStartersPokemons,
+  setTurn,
+  replaceCurrentPokemon,
+  replaceBotPokemon,
+  userAttack,
+  botAttack,
+  setMessage,
+  setPause,
+  removePause,
+  resetBattelData,
+  setAlivePokemons,
+  emptyAlivePokemonList,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;
