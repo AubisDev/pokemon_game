@@ -10,7 +10,6 @@ import { usernameError } from "../../../utilities/constants";
 import {
   defaultUsername,
   FormInstructionTextOne,
-  FormInstructionTextTwo,
 } from "../utilities";
 
 function UserForm() {
@@ -39,14 +38,6 @@ function UserForm() {
         color="white"
       >
         {FormInstructionTextOne}
-      </Typography>
-      <Typography
-        pb={3}
-        textAlign="center"
-        fontSize={{ xs: "18px", sm: "20px" }}
-        color="white"
-      >
-        {FormInstructionTextTwo}
       </Typography>
       <TextField
         id="username-input"
