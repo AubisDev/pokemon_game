@@ -18,7 +18,7 @@
     <img src="public/pageicon.ico" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Pokemon battle simulator</h3>
+<h3 align="center">Pokemon Battle Simulator</h3>
 
   <p align="center">
     A pokemon game using PokeAPI V2. Based on original, recreates battles with instead of using MT/MO moves, damage is based on pokemons basic stats. Prepare to challenge a random trainer or try to beat the bosses. 
@@ -51,7 +51,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
