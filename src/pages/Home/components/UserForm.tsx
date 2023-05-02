@@ -7,10 +7,7 @@ import { PrivateRoutes } from "../../../models";
 import { setUsername } from "../../../redux/state/user";
 import { CommonButton } from "../style-components";
 import { usernameError } from "../../../utilities/constants";
-import {
-  defaultUsername,
-  FormInstructionTextOne,
-} from "../utilities";
+import { defaultUsername, FormInstructionTextOne } from "../utilities";
 
 function UserForm() {
   const dispatch = useDispatch();

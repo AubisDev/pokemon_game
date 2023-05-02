@@ -101,6 +101,12 @@ export const UserPokemonImage = styled(motion.img)(({ theme }) => ({
   left: "15%",
   overflowX: "hidden",
 
+  [theme.breakpoints.down("xl")]: {
+    width: "265px",
+    height: "265px",
+    bottom: 0,
+    left: "20%",
+  },
   [theme.breakpoints.down("sm")]: {
     width: "175px",
     height: "175px",
@@ -113,9 +119,16 @@ export const BotPokemonImage = styled(motion.img)(({ theme }) => ({
   width: "250x",
   height: "250px",
   position: "absolute",
-  top: "15%",
+  top: "10%",
   right: "15%",
   overflowX: "hidden",
+
+  [theme.breakpoints.down("xl")]: {
+    width: "210px",
+    height: "210px",
+    top: "10%",
+    right: "15%",
+  },
 
   [theme.breakpoints.down("sm")]: {
     width: "125px",
