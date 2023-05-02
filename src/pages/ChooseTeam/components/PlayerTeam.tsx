@@ -31,8 +31,6 @@ function PlayerTeam({ setOpenDifficultyMenu }: IPlayerTeam) {
     }
   };
 
-  console.log(userTeam);
-
   return (
     <TeamCardsContainer>
       <TeamCardsTitle>
@@ -42,10 +40,9 @@ function PlayerTeam({ setOpenDifficultyMenu }: IPlayerTeam) {
         </Box>
       </TeamCardsTitle>
       <GridContainer container py={1} px={1} rowGap={1}>
-        {userTeam.map((pokemon) => {
-          console.log(pokemon);
-          return <PokemonGridCard key={uuidv4()} pokemon={pokemon} />;
-        })}
+        {userTeam.map((pokemon) => (
+          <PokemonGridCard key={uuidv4()} pokemon={pokemon} />
+        ))}
       </GridContainer>
       {isInBattleMode ? null : (
         <Button
