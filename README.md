@@ -65,7 +65,10 @@ Web
 
 <br/>
 Mobile
-[![Pokemon Battle Simulator mobile view][mobile-view_img]](public/mobile_view.webp)
+<br/>
+
+![Pokemon Battle Simulator mobile view](public/mobile_view.webp "Mobile view") 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
