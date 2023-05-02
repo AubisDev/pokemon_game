@@ -14,7 +14,7 @@ function Navigation() {
     <Suspense fallback={<>Cargando...</>}>
       <BrowserRouter>
         <RoutesWithNoFound>
-          <Route path="/" element={<Navigate to={PublicRoutes.HOME} />} />
+          <Route path="/" element={<Home />} />
           <Route path={PublicRoutes.ABOUT} element={<About />} />
           <Route element={<TeamSelectGuard />}>
             <Route
