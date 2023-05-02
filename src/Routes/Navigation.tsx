@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Navigate } from "react-router-dom";
-import { PrivateAuthGuard, TeamSelectGuard } from "../guards/AuthGuard.guard";
-import { PublicRoutes, PrivateRoutes } from "../models/route.model";
+import { PrivateAuthGuard, TeamSelectGuard } from "../guards";
+import { PublicRoutes, PrivateRoutes } from "../models";
 import RoutesWithNoFound from "../utilities/RoutesWithNoFound";
 
 const Battle = lazy(() => import("../pages/Battle/Battle"));
@@ -15,7 +15,6 @@ function Navigation() {
       <BrowserRouter>
         <RoutesWithNoFound>
           <Route path="/" element={<Navigate to={PublicRoutes.HOME} />} />
-          <Route path={PublicRoutes.HOME} element={<Home />} />
           <Route path={PublicRoutes.ABOUT} element={<About />} />
           <Route element={<TeamSelectGuard />}>
             <Route
