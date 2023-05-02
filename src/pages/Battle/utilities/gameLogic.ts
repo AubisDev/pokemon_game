@@ -1,10 +1,15 @@
 import { Pokemon } from "../../../models/pokemon.model";
 import { calculateDamage } from "./DamageCalculator";
 
+export const firstToMove = {
+  user: "user first",
+  bot: "bot first",
+};
+
 export const gameLogic = () => {};
 
 export const checkWhoIsFirstAttack = (userSpeed: number, botSpeed: number) => {
-  return userSpeed > botSpeed ? "user first" : "bot first";
+  return userSpeed > botSpeed ? firstToMove.user : firstToMove.bot;
 };
 
 export const userAttackAction = (

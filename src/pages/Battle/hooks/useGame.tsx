@@ -20,7 +20,10 @@ import {
   checkHealth,
   botAttackAction,
   delay,
+  firstToMove,
 } from "../utilities/gameLogic";
+
+const ATTACK_ACTION = "attack";
 
 const useGame = () => {
   const dispatch = useDispatch();
@@ -38,16 +41,18 @@ const useGame = () => {
   const [winner, setWinner] = useState("");
   const [userPokemonFainted, setUserPokemonFainted] = useState(false);
 
+  // Define la accion que ejecuta el usuario
+  // Si la accion es de cambio, es un movimiento priorizado, caso contrario se define el primer movimiento segun la velocidad del los pokemones
   const handleUserAction = async (action: string) => {
     pauseRef.current = true;
     const botState = { ...botPokemon };
     const currUserPokemon = { ...userPokemon };
-    if (action === "attack") {
+    if (action === ATTACK_ACTION) {
       const firstMove = checkWhoIsFirstAttack(
         userPokemon.speed,
         botPokemon.speed,
       );
-      if (firstMove === "user first") {
+      if (firstMove === firstToMove.user) {
         handleUserAttack(botState, firstMove);
       } else {
         handleBotAttack(currUserPokemon, firstMove);
@@ -55,10 +60,9 @@ const useGame = () => {
     } else {
       showPokemonSelectMenu();
     }
-    // User
-    // Todo sino, verifica que aun tenga pokemones vivos, en caso de, manda el proximo pokemon, sino la batalla termina
   };
 
+  // user pokemon attack animation
   const userAttackAnimation = () => {
     setAttackMove(true);
     setTimeout(() => {
@@ -66,6 +70,7 @@ const useGame = () => {
     }, 500);
   };
 
+  // bot pokemon attack animation
   const botAttackAnimation = () => {
     setBotAttackMove(true);
     setTimeout(() => {
@@ -73,6 +78,7 @@ const useGame = () => {
     }, 500);
   };
 
+  // throw user pokeball animation
   const throwUserPokeballAnimation = () => {
     setThrowUserPokeball(true);
     setTimeout(() => {
@@ -80,6 +86,7 @@ const useGame = () => {
     }, 1500);
   };
 
+  // throw bot pokeball animation
   const throwBotPokeballAnimation = () => {
     setThrowBotPokeball(true);
     setTimeout(() => {
@@ -87,6 +94,7 @@ const useGame = () => {
     }, 1500);
   };
 
+  // sets new turn messages
   const newTurnMessage = async (pokemon: Pokemon) => {
     const firstLine = "What will";
     const secondLine = `${pokemon.name.toUpperCase()} do?`;
@@ -105,6 +113,7 @@ const useGame = () => {
     newTurnMessage(userPokemon);
   }, []);
 
+  //  User attack logic
   const handleUserAttack = async (botState: Pokemon, turn: string) => {
     dispatch(
       setMessage({
@@ -116,7 +125,7 @@ const useGame = () => {
       }),
     );
     await delay(750);
-    if (turn === "user first") {
+    if (turn === firstToMove.user) {
       await delay(1250);
       userAttackAnimation();
       const newCopy = { ...botState };
@@ -156,6 +165,7 @@ const useGame = () => {
     }
   };
 
+  //  Bot attack logic
   const handleBotAttack = async (currUserPokemon: Pokemon, turn: string) => {
     dispatch(
       setMessage({
@@ -167,7 +177,7 @@ const useGame = () => {
       }),
     );
     await delay(750);
-    if (turn === "user first") {
+    if (turn === firstToMove.user) {
       await delay(1250);
       botAttackAnimation();
       const uCopy = { ...currUserPokemon };
@@ -196,6 +206,7 @@ const useGame = () => {
     }
   };
 
+  //  When bot pokemon fainted, it sends the next one to battle
   const handleBotPokemonChange = async () => {
     dispatch(
       setMessage({
@@ -229,6 +240,7 @@ const useGame = () => {
     }
   };
 
+  // user change pokemon action logic
   const handleUserPokemonChange = async (pokemon?: Pokemon) => {
     dispatch(
       setMessage({
@@ -244,6 +256,7 @@ const useGame = () => {
     showAvailableTeam();
   };
 
+  // Update pokemon health after an attack
   const updateUserTeam = (updatedPokemonStats: Pokemon) => {
     return [...userTeam].map((pokemon) => {
       if (updatedPokemonStats.id === pokemon.id) {
@@ -253,6 +266,7 @@ const useGame = () => {
     });
   };
 
+  // Show available pokemons when user uses change action
   const showAvailableTeam = async () => {
     const alivePokemons = [...userTeam].filter(
       (pokemon) =>
@@ -263,6 +277,7 @@ const useGame = () => {
     await delay(1000);
   };
 
+  // Show message for change pokemon action
   const showPokemonSelectMenu = async () => {
     dispatch(
       setMessage({
@@ -274,6 +289,7 @@ const useGame = () => {
     await delay(1000);
   };
 
+  // Logic for user pokemon change action
   const handleUserSelection = async (selectedPokemon: Pokemon) => {
     throwUserPokeballAnimation();
     dispatch(replaceCurrentPokemon(selectedPokemon));
