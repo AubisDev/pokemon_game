@@ -1,5 +1,5 @@
 export const PublicRoutes = {
-  HOME: "home",
+  HOME: "",
   ABOUT: "about",
 };
 

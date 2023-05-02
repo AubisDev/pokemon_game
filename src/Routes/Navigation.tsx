@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Navigate } from "react-router-dom";
 import { PrivateAuthGuard, TeamSelectGuard } from "../guards/AuthGuard.guard";
-import { PublicRoutes, PrivateRoutes } from "../models/routes";
+import { PublicRoutes, PrivateRoutes } from "../models/route.model";
 import RoutesWithNoFound from "../utilities/RoutesWithNoFound";
 
 const Battle = lazy(() => import("../pages/Battle/Battle"));
