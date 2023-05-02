@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AubisDev/pokemon_game">
-    <img src="public/iconlogo.ico" alt="Logo" width="80" height="80">
+    <img src="public/pageicon.ico" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Pokemon battle simulator</h3>
@@ -62,11 +62,11 @@
 ## About The Project
 
 Web
-[![Pokemon Battle Simulator main page][product-screenshot]](public/mainpage.webp)
+[![Pokemon Battle Simulator main page][main-page_img]](public/mainpage.webp)
 
 <br/>
 Mobile
-[![Pokemon Battle Simulator main page][product-screenshot]](public/mobile_view.webp)
+[![Pokemon Battle Simulator mobile view][mobile-view_img]](public/mobile_view.webp)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -92,12 +92,12 @@ Mobile
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
+  ```sh
   Clone the repository
+  ```
+ 
+* How to install 
 
-### Prerequisites
-How to install 
-* 
   ```
    cd pokemon_game
   ```
@@ -114,28 +114,16 @@ How to install
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 <!-- APP IMAGES -->
 ## LIVE PAGE IMAGES
 
 Team select page
-[![Team selection page][product-screenshot]](public/pokemon_pick1.webp)
+![Team pick page](public/pokemon_pick1.webp "Team pick page")
 
-Battle page
-[![Battle page][product-screenshot]](public/pokemon_pick2.webp)
+![Battle page](public/pokemon_pick2.webp "Battle start")
 
-Battle page
-[![Battle page][product-screenshot]](public/pokemon_pick3.webp)
+During battle page
+![Battle page](public/pokemon_pick3.webp "Advance battle")
 
 <!-- CONTACT -->
 ## Contact
@@ -174,6 +162,7 @@ Project Link: [https://github.com/AubisDev/pokemon_game](https://github.com/Aubi
 [React-Responsive_url]: https://www.npmjs.com/package/react-responsive
 [uuid]: https://img.shields.io/badge/uuid-35495E?style=for-the-badge&logo=uuid&logoColor=61DAFB
 [uuid_url]: https://www.npmjs.com/package/uuid
-
+[main-page_img]: public/mainpage.webp
+[mobile-view_img]: public/mobile_view.webp
 
 
