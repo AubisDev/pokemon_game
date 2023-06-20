@@ -27,4 +27,4 @@ export const charDataEmptyValues = (): ChartData[] => {
 
 export const SearchErrorMessage: string = "Pokemon not found, try again";
 export const initialAlivePokemonState = [];
-export const apiURL = "https://pokeapi.co/api/v2/pokemon";
+export const apiURL = "https://pokeapi.co/api/v2/pokemon/";
